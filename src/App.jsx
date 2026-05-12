@@ -2,9 +2,12 @@ import { useState, useEffect, useRef } from "react";
 
 const BADGE_ICONS = {
   mechanics: "⚙", waves: "〜", thermo: "🌡",
-  em: "⚡", quantum: "◇", relativity: "∞", nuclear: "◎"
+  em: "⚡", quantum: "◇", relativity: "∞", nuclear: "◎", math: "∫"
 };
 
+          
+
+    
 const topics = {
   mechanics: {
     title: "Classical Mechanics", icon: "⚙", color: "#378ADD",
@@ -214,9 +217,148 @@ const topics = {
       { id: "binding", title: "Binding Energy", introduction: "The binding energy of a nucleus is the energy required to completely separate it into individual protons and neutrons. The higher the binding energy per nucleon, the more stable the nucleus. Iron-56 has the highest binding energy per nucleon — which is why both fission (of heavy elements) and fusion (of light elements) release energy, as both move toward iron on the binding energy curve.", keyConcepts: ["Binding energy holds the nucleus together against electrostatic repulsion", "Binding energy per nucleon peaks at iron-56 — the most stable nucleus", "Elements lighter than iron release energy through fusion", "Elements heavier than iron release energy through fission", "Mass defect: the nucleus is lighter than its constituent parts — the difference is the binding energy"], workedExample: { problem: "A helium-4 nucleus has mass 4.0015u. Find its binding energy. (proton=1.00728u, neutron=1.00867u, 1u=931.5 MeV)", steps: ["Mass of parts: 2×proton + 2×neutron = 2×1.00728 + 2×1.00867 = 4.0319u", "Mass defect: Δm = 4.0319 - 4.0015 = 0.0304u", "Binding energy: E = 0.0304 × 931.5 = 28.3 MeV", "Per nucleon: 28.3/4 = 7.07 MeV/nucleon"], answer: "Binding energy = 28.3 MeV (7.07 MeV per nucleon)" }, equations: "BE = Δmc²  |  Δm = Zm_p + Nm_n - M  |  1u = 931.5 MeV", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "nuclear" },
     ],
   },
-};
 
-const TOPIC_KEYS = Object.keys(topics);
+math: {
+    title: "Mathematics", icon: "∫", color: "#9B59B6",
+    badge: "Maths Master",
+    lessons: [
+      {
+        id: "algebra", title: "Algebra",
+        introduction: "Algebra is the language of mathematics — it lets us describe relationships between quantities using symbols and equations. Every physics formula you use is algebra. When you rearrange F=ma to find acceleration, you are doing algebra. Mastering algebra means you can solve any equation, rearrange any formula, and find any unknown quantity.",
+        keyConcepts: [
+          "Variables represent unknown quantities — usually letters like x, y, or n",
+          "An equation says two expressions are equal — what you do to one side you must do to the other",
+          "To solve for a variable, isolate it by performing inverse operations",
+          "Quadratic equations (ax²+bx+c=0) can be solved by factoring or the quadratic formula",
+          "Simultaneous equations have two unknowns and require two equations to solve",
+        ],
+        workedExample: {
+          problem: "Rearrange v² = u² + 2as to make s the subject.",
+          steps: [
+            "Start with: v² = u² + 2as",
+            "Subtract u² from both sides: v² - u² = 2as",
+            "Divide both sides by 2a: (v² - u²) / 2a = s",
+            "Write neatly: s = (v² - u²) / 2a",
+          ],
+          answer: "s = (v² − u²) / 2a"
+        },
+        equations: "ax + b = c  |  x = (-b ± √(b²-4ac)) / 2a  |  s = (v²-u²)/2a",
+        controls: [
+          { id: "a", label: "Coefficient a", min: 1, max: 5, val: 2, unit: "" },
+          { id: "b", label: "Coefficient b", min: -10, max: 10, val: -4, unit: "" },
+        ],
+        simKey: "algebra",
+      },
+      {
+        id: "trigonometry", title: "Trigonometry",
+        introduction: "Trigonometry describes the relationships between angles and sides in triangles. The three main functions — sine, cosine, and tangent — appear everywhere in physics: resolving forces, calculating wave equations, describing circular motion. If you can use sin, cos, and tan confidently, the mathematics of physics becomes dramatically easier.",
+        keyConcepts: [
+          "SOH CAH TOA: Sin = Opposite/Hypotenuse, Cos = Adjacent/Hypotenuse, Tan = Opposite/Adjacent",
+          "Angles can be measured in degrees (0-360) or radians (0-2π)",
+          "The unit circle connects angles to coordinates — cos gives x, sin gives y",
+          "sin²θ + cos²θ = 1 always — the Pythagorean identity",
+          "Inverse trig functions (sin⁻¹, cos⁻¹, tan⁻¹) find the angle from a ratio",
+        ],
+        workedExample: {
+          problem: "A ramp is 5m long at 30° to the horizontal. Find the vertical height and horizontal length.",
+          steps: [
+            "The hypotenuse is 5m, angle is 30°",
+            "Vertical height (opposite): h = 5 × sin(30°) = 5 × 0.5 = 2.5m",
+            "Horizontal length (adjacent): d = 5 × cos(30°) = 5 × 0.866 = 4.33m",
+            "Check with Pythagoras: 2.5² + 4.33² = 6.25 + 18.75 = 25 = 5² ✓",
+          ],
+          answer: "Vertical height = 2.5m, Horizontal length = 4.33m"
+        },
+        equations: "sinθ = O/H  |  cosθ = A/H  |  tanθ = O/A  |  sin²θ + cos²θ = 1",
+        controls: [
+          { id: "angle", label: "Angle θ", min: 0, max: 90, val: 30, unit: "°" },
+        ],
+        simKey: "trigonometry",
+      },
+      {
+        id: "calculus", title: "Calculus",
+        introduction: "Calculus is the mathematics of change. Differentiation finds the rate of change of a quantity — velocity is the derivative of position, acceleration is the derivative of velocity. Integration finds the total accumulated change — displacement is the integral of velocity. Every equation of motion in physics comes from calculus.",
+        keyConcepts: [
+          "Differentiation finds the gradient (rate of change) of a function at any point",
+          "The derivative of xⁿ is nxⁿ⁻¹ — the power rule",
+          "Velocity = dx/dt (rate of change of position), Acceleration = dv/dt",
+          "Integration is the reverse of differentiation — it finds the area under a curve",
+          "The integral of xⁿ is xⁿ⁺¹/(n+1) + c where c is the constant of integration",
+        ],
+        workedExample: {
+          problem: "A particle's position is x = 3t² + 2t. Find its velocity and acceleration.",
+          steps: [
+            "Differentiate position to get velocity: v = dx/dt",
+            "v = d(3t² + 2t)/dt = 6t + 2",
+            "Differentiate velocity to get acceleration: a = dv/dt",
+            "a = d(6t + 2)/dt = 6 m/s²",
+          ],
+          answer: "Velocity v = 6t + 2 m/s, Acceleration a = 6 m/s² (constant)"
+        },
+        equations: "v = dx/dt  |  a = dv/dt  |  d(xⁿ)/dx = nxⁿ⁻¹  |  ∫xⁿdx = xⁿ⁺¹/(n+1)",
+        controls: [
+          { id: "power", label: "Power n", min: 1, max: 4, val: 2, unit: "" },
+          { id: "coeff", label: "Coefficient", min: 1, max: 5, val: 3, unit: "" },
+        ],
+        simKey: "calculus",
+      },
+      {
+        id: "vectors", title: "Vectors",
+        introduction: "Vectors have both magnitude and direction — unlike scalars which have only magnitude. Force, velocity, acceleration, and displacement are all vectors. Adding vectors is not as simple as adding numbers — direction matters. Understanding vectors is essential for resolving forces, analysing motion in 2D, and understanding fields.",
+        keyConcepts: [
+          "Vectors have magnitude (size) and direction — drawn as arrows",
+          "Scalars have magnitude only — examples: speed, mass, temperature, energy",
+          "Vectors are added tip-to-tail — the resultant goes from start to end",
+          "A vector can be resolved into horizontal and vertical components using trig",
+          "The magnitude of vector (x,y) is √(x²+y²) — Pythagoras in vector form",
+        ],
+        workedExample: {
+          problem: "Two forces act on an object: 30N east and 40N north. Find the resultant force.",
+          steps: [
+            "Draw the vectors tip to tail — 30N east then 40N north",
+            "These form a right-angled triangle",
+            "Magnitude: R = √(30² + 40²) = √(900 + 1600) = √2500 = 50N",
+            "Direction: θ = tan⁻¹(40/30) = tan⁻¹(1.333) = 53.1° north of east",
+          ],
+          answer: "Resultant = 50N at 53.1° north of east"
+        },
+        equations: "|v| = √(x²+y²)  |  vₓ = |v|cosθ  |  vᵧ = |v|sinθ  |  A·B = |A||B|cosθ",
+        controls: [
+          { id: "angle", label: "Vector angle", min: 0, max: 90, val: 53, unit: "°" },
+          { id: "magnitude", label: "Magnitude", min: 10, max: 60, val: 50, unit: " N" },
+        ],
+        simKey: "vectors",
+      },
+      {
+        id: "graphs", title: "Graphs & Functions",
+        introduction: "Graphs are how mathematics communicates visually. In physics, graphs tell stories — a velocity-time graph shows acceleration as gradient, displacement as area. Being able to read and draw graphs, identify gradients, and understand what areas under curves represent is one of the most practical mathematical skills in all of science.",
+        keyConcepts: [
+          "Gradient (slope) = rise/run = change in y / change in x",
+          "On a displacement-time graph, gradient = velocity",
+          "On a velocity-time graph, gradient = acceleration and area = displacement",
+          "A straight line graph has equation y = mx + c where m is gradient and c is y-intercept",
+          "Curved graphs show non-constant rates of change — the gradient changes at every point",
+        ],
+        workedExample: {
+          problem: "A velocity-time graph shows v=0 at t=0 and v=20m/s at t=4s in a straight line. Find acceleration and displacement.",
+          steps: [
+            "Acceleration = gradient = (v₂-v₁)/(t₂-t₁) = (20-0)/(4-0) = 5 m/s²",
+            "Displacement = area under graph = area of triangle",
+            "Area = ½ × base × height = ½ × 4 × 20 = 40m",
+          ],
+          answer: "Acceleration = 5 m/s², Displacement = 40m"
+        },
+        equations: "gradient = Δy/Δx  |  y = mx + c  |  area = displacement  |  gradient = acceleration",
+        controls: [
+          { id: "gradient", label: "Gradient", min: 1, max: 10, val: 5, unit: "" },
+          { id: "intercept", label: "Y-intercept", min: -10, max: 10, val: 0, unit: "" },
+        ],
+        simKey: "graphs",
+      },
+    ],
+  },
+};
+  const TOPIC_KEYS = Object.keys(topics);
 function SimCanvas({ simKey, controls }) {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -248,6 +390,11 @@ function SimCanvas({ simKey, controls }) {
       else if (simKey === "refraction") drawRefraction(ctx, W, H, t, controls);
       else if (simKey === "diffraction") drawDiffraction(ctx, W, H, t, controls);
       else if (simKey === "polarisation") drawPolarisation(ctx, W, H, t, controls);
+      else if (simKey === "algebra") drawAlgebra(ctx, W, H, t, controls);
+      else if (simKey === "trigonometry") drawTrigonometry(ctx, W, H, t, controls);
+      else if (simKey === "calculus") drawCalculus(ctx, W, H, t, controls);
+      else if (simKey === "vectors") drawVectors(ctx, W, H, t, controls);
+      else if (simKey === "graphs") drawGraphs(ctx, W, H, t, controls);
       animRef.current = requestAnimationFrame(loop);
     }
     animRef.current = requestAnimationFrame(loop);
@@ -702,7 +849,244 @@ function Controls({ controls, values, onChange }) {
     </div>
   );
 }
+function drawAlgebra(ctx, W, H, t, controls) {
+  const a = controls.a || 2, b = controls.b || -4;
+  const W2 = W, H2 = H;
+  const ox = W2 / 2, oy = H2 / 2;
+  const scaleX = 40, scaleY = 40;
 
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 0.5;
+  for (let x = -8; x <= 8; x++) {
+    ctx.beginPath(); ctx.moveTo(ox + x * scaleX, 20); ctx.lineTo(ox + x * scaleX, H2 - 20); ctx.stroke();
+  }
+  for (let y = -4; y <= 4; y++) {
+    ctx.beginPath(); ctx.moveTo(20, oy + y * scaleY); ctx.lineTo(W2 - 20, oy + y * scaleY); ctx.stroke();
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(20, oy); ctx.lineTo(W2 - 20, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 20); ctx.lineTo(ox, H2 - 20); ctx.stroke();
+
+  ctx.beginPath(); ctx.strokeStyle = "#9B59B6"; ctx.lineWidth = 2.5;
+  for (let px = 20; px < W2 - 20; px++) {
+    const x = (px - ox) / scaleX;
+    const y = a * x * x + b * x;
+    const py = oy - y * scaleY;
+    px === 20 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  const root1 = (-b + Math.sqrt(b * b)) / (2 * a);
+  const root2 = (-b - Math.sqrt(b * b)) / (2 * a);
+  [root1, root2].forEach(r => {
+    if (isFinite(r) && Math.abs(r) < 7) {
+      ctx.beginPath(); ctx.arc(ox + r * scaleX, oy, 6, 0, Math.PI * 2);
+      ctx.fillStyle = "#E85D24"; ctx.fill();
+    }
+  });
+
+  const vertex_x = -b / (2 * a);
+  const vertex_y = a * vertex_x * vertex_x + b * vertex_x;
+  ctx.beginPath(); ctx.arc(ox + vertex_x * scaleX, oy - vertex_y * scaleY, 6, 0, Math.PI * 2);
+  ctx.fillStyle = "#1D9E75"; ctx.fill();
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText(`y = ${a}x² ${b >= 0 ? '+' : ''}${b}x  |  vertex at (${vertex_x.toFixed(1)}, ${vertex_y.toFixed(1)})`, W2 / 2, H2 - 8);
+  ctx.textAlign = "left";
+}
+
+function drawTrigonometry(ctx, W, H, t, controls) {
+  const angle = ((controls.angle || 30) * Math.PI) / 180;
+  const cx = W * 0.35, cy = H * 0.5, r = Math.min(W, H) * 0.3;
+
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1; ctx.stroke();
+
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.moveTo(cx - r - 10, cy); ctx.lineTo(cx + r + 10, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, cy - r - 10); ctx.lineTo(cx, cy + r + 10); ctx.stroke();
+
+  const px = cx + r * Math.cos(angle), py = cy - r * Math.sin(angle);
+
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py);
+  ctx.strokeStyle = "#9B59B6"; ctx.lineWidth = 2.5; ctx.stroke();
+
+  ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, cy);
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2; ctx.setLineDash([4, 4]); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, cy);
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2; ctx.setLineDash([4, 4]); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.beginPath(); ctx.arc(cx, cy, r * 0.25, 0, angle, false);
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 1.5; ctx.stroke();
+
+  const grad = ctx.createRadialGradient(px - 2, py - 2, 1, px, py, 8);
+  grad.addColorStop(0, "#b388d9"); grad.addColorStop(1, "#9B59B6");
+  ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2); ctx.fillStyle = grad; ctx.fill();
+
+  const sinVal = Math.sin(angle), cosVal = Math.cos(angle), tanVal = Math.tan(angle);
+
+  ctx.font = "12px monospace"; ctx.textAlign = "left";
+  ctx.fillStyle = "#E85D24"; ctx.fillText(`sin(${controls.angle||30}°) = ${sinVal.toFixed(3)}`, W * 0.62, H * 0.3);
+  ctx.fillStyle = "#1D9E75"; ctx.fillText(`cos(${controls.angle||30}°) = ${cosVal.toFixed(3)}`, W * 0.62, H * 0.3 + 22);
+  ctx.fillStyle = "#F2C94C"; ctx.fillText(`tan(${controls.angle||30}°) = ${Math.abs(tanVal) < 10 ? tanVal.toFixed(3) : "∞"}`, W * 0.62, H * 0.3 + 44);
+
+  ctx.fillStyle = "#E85D24"; ctx.font = "11px monospace";
+  ctx.fillText("sin", px + 6, (py + cy) / 2);
+  ctx.fillStyle = "#1D9E75";
+  ctx.fillText("cos", (cx + px) / 2, cy + 14);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.textAlign = "center";
+  ctx.fillText("Unit circle — drag angle slider to explore", W / 2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawCalculus(ctx, W, H, t, controls) {
+  const power = controls.power || 2, coeff = controls.coeff || 3;
+  const ox = 60, oy = H - 50, scaleX = (W - 100) / 4, scaleY = 30;
+
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 0.5;
+  for (let x = 0; x <= 4; x++) {
+    ctx.beginPath(); ctx.moveTo(ox + x * scaleX, 20); ctx.lineTo(ox + x * scaleX, oy); ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.3)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+    ctx.fillText(x, ox + x * scaleX, oy + 14);
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(W - 30, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 20); ctx.lineTo(ox, oy); ctx.stroke();
+
+  ctx.beginPath(); ctx.strokeStyle = "#9B59B6"; ctx.lineWidth = 2.5;
+  for (let px = ox; px < W - 30; px++) {
+    const x = (px - ox) / scaleX;
+    const y = coeff * Math.pow(x, power);
+    const py = oy - Math.min(y * scaleY, oy - 25);
+    px === ox ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  const tangentX = (t * 0.3) % 3.5 + 0.2;
+  const tangentY = coeff * Math.pow(tangentX, power);
+  const slope = coeff * power * Math.pow(tangentX, power - 1);
+  const tx = ox + tangentX * scaleX, ty = oy - Math.min(tangentY * scaleY, oy - 25);
+
+  const tlen = 60;
+  const tdx = tlen / Math.sqrt(1 + slope * slope * (scaleY / scaleX) * (scaleY / scaleX));
+  const tdy = slope * tdx * (scaleY / scaleX);
+
+  ctx.beginPath(); ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2;
+  ctx.moveTo(tx - tdx, ty + tdy); ctx.lineTo(tx + tdx, ty - tdy); ctx.stroke();
+
+  ctx.beginPath(); ctx.arc(tx, ty, 5, 0, Math.PI * 2);
+  ctx.fillStyle = "#E85D24"; ctx.fill();
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText(`f(x) = ${coeff}x${power > 1 ? `^${power}` : ""}  |  f'(x) = ${coeff * power}x${power > 2 ? `^${power - 1}` : ""}  |  slope at x=${tangentX.toFixed(1)}: ${slope.toFixed(2)}`, W / 2, H - 10);
+  ctx.fillStyle = "#9B59B6"; ctx.fillText(`f(x) = ${coeff}x^${power}`, ox + 10, 35);
+  ctx.fillStyle = "#E85D24"; ctx.fillText(`f'(x) = ${coeff * power}x^${power - 1}`, ox + 10, 52);
+  ctx.textAlign = "left";
+}
+
+function drawVectors(ctx, W, H, t, controls) {
+  const angle = ((controls.angle || 53) * Math.PI) / 180;
+  const mag = controls.magnitude || 50;
+  const cx = W * 0.4, cy = H * 0.55;
+  const scale = 3;
+
+  const vx = mag * Math.cos(angle) * scale, vy = -mag * Math.sin(angle) * scale;
+
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.moveTo(cx - 200, cy); ctx.lineTo(cx + 200, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, cy - 150); ctx.lineTo(cx, cy + 50); ctx.stroke();
+
+  ctx.strokeStyle = "#9B59B6"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + vx, cy + vy); ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx + vx, cy + vy, 6, 0, Math.PI * 2);
+  ctx.fillStyle = "#9B59B6"; ctx.fill();
+
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2; ctx.setLineDash([5, 5]);
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + vx, cy); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2; ctx.setLineDash([5, 5]);
+  ctx.beginPath(); ctx.moveTo(cx + vx, cy); ctx.lineTo(cx + vx, cy + vy); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.beginPath(); ctx.arc(cx, cy, 30, -angle, 0);
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 1.5; ctx.stroke();
+
+  ctx.font = "12px monospace";
+  ctx.fillStyle = "#1D9E75"; ctx.textAlign = "center";
+  ctx.fillText(`vₓ = ${(mag * Math.cos(angle)).toFixed(1)}`, cx + vx / 2, cy + 18);
+  ctx.fillStyle = "#E85D24"; ctx.textAlign = "left";
+  ctx.fillText(`vᵧ = ${(mag * Math.sin(angle)).toFixed(1)}`, cx + vx + 8, cy + vy / 2);
+  ctx.fillStyle = "#9B59B6";
+  ctx.fillText(`|v| = ${mag}`, cx + vx / 2 - 10, cy + vy / 2 - 10);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText(`Magnitude = ${mag}  |  Angle = ${controls.angle||53}°  |  Components: (${(mag*Math.cos(angle)).toFixed(1)}, ${(mag*Math.sin(angle)).toFixed(1)})`, W / 2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawGraphs(ctx, W, H, t, controls) {
+  const m = controls.gradient || 5, c = controls.intercept || 0;
+  const ox = 60, oy = H / 2, scaleX = (W - 100) / 10, scaleY = 20;
+
+  ctx.strokeStyle = "rgba(255,255,255,0.08)"; ctx.lineWidth = 0.5;
+  for (let x = 0; x <= 10; x++) {
+    ctx.beginPath(); ctx.moveTo(ox + x * scaleX, 20); ctx.lineTo(ox + x * scaleX, H - 20); ctx.stroke();
+  }
+  for (let y = -5; y <= 5; y++) {
+    ctx.beginPath(); ctx.moveTo(ox, oy + y * scaleY * 2); ctx.lineTo(W - 30, oy + y * scaleY * 2); ctx.stroke();
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(W - 30, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 20); ctx.lineTo(ox, H - 20); ctx.stroke();
+
+  ctx.beginPath(); ctx.strokeStyle = "#9B59B6"; ctx.lineWidth = 2.5;
+  for (let px = ox; px < W - 30; px++) {
+    const x = (px - ox) / scaleX;
+    const y = m * x + c;
+    const py = oy - y * scaleY;
+    if (py > 15 && py < H - 15) {
+      px === ox ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+  }
+  ctx.stroke();
+
+  const animX = (t * 0.5) % 8 + 1;
+  const animY = m * animX + c;
+  const apx = ox + animX * scaleX, apy = oy - animY * scaleY;
+  if (apy > 15 && apy < H - 15) {
+    ctx.beginPath(); ctx.arc(apx, apy, 7, 0, Math.PI * 2);
+    ctx.fillStyle = "#E85D24"; ctx.fill();
+
+    ctx.strokeStyle = "rgba(232,93,36,0.4)"; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(apx, apy); ctx.lineTo(apx, oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(apx, apy); ctx.lineTo(ox, apy); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "rgba(255,255,255,0.5)"; ctx.font = "11px monospace";
+    ctx.fillText(`(${animX.toFixed(1)}, ${animY.toFixed(1)})`, apx + 8, apy - 8);
+  }
+
+  const gradTriX1 = ox + 2 * scaleX, gradTriX2 = ox + 4 * scaleX;
+  const gradTriY1 = oy - (m * 2 + c) * scaleY, gradTriY2 = oy - (m * 4 + c) * scaleY;
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 1.5; ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(gradTriX1, gradTriY1); ctx.lineTo(gradTriX2, gradTriY1); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(gradTriX2, gradTriY1); ctx.lineTo(gradTriX2, gradTriY2); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#1D9E75"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText(`rise = ${(m * 2).toFixed(0)}`, (gradTriX1 + gradTriX2) / 2, gradTriY1 + 14);
+  ctx.fillText(`run = 2`, gradTriX2 + 20, (gradTriY1 + gradTriY2) / 2);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText(`y = ${m}x ${c >= 0 ? '+' : ''}${c}  |  gradient = ${m}  |  y-intercept = ${c}`, W / 2, H - 8);
+  ctx.textAlign = "left";
+}
 function AskAI({ topic, lesson }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -884,7 +1268,7 @@ function LessonView({ topic, lesson, onComplete, completed }) {
 
     // 1: Simulation
     <div style={{ display: "flex", flexDirection: "column", gap: 10, height: "100%" }}>
-      <div style={{ flex: 1, background: "#080a0f", borderRadius: 8, overflow: "hidden", minHeight: 220 }}>
+      <div style={{ flex: 1, background: "#080a0f", borderRadius: 8, overflow: "hidden", minHeight: 260 }}>
         <SimCanvas simKey={lesson.simKey} controls={currentControls} />
       </div>
       {controls.length > 0 && (
