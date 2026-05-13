@@ -1,7 +1,1 @@
-const fs = require('fs');
-let c = fs.readFileSync('src/App.jsx', 'utf8');
-c = c.replace(/React\.useState/g, 'useState');
-c = c.replace(/React\.useEffect/g, 'useEffect');
-c = c.replace(/React\.useRef/g, 'useRef');
-fs.writeFileSync('src/App.jsx', c);
-console.log('Done!');
+const fs = require('fs'); let c = fs.readFileSync('src/App.jsx', 'utf8'); const first = c.indexOf('function PracticeProblems'); const second = c.indexOf('function PracticeProblems', first + 1); const askAI = c.indexOf('function AskAI'); console.log('First:', first, 'Second:', second, 'AskAI:', askAI); if(second > -1 && second < askAI) { c = c.substring(0, second) + c.substring(askAI); console.log('Removed second duplicate'); } else if(second > -1) { c = c.substring(0, first) + c.substring(second); console.log('Removed first duplicate'); } fs.writeFileSync('src/App.jsx', c); console.log('Done!');
