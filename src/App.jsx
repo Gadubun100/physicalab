@@ -499,8 +499,147 @@ math: {
       },
     ],
   },
+  chemistry: {
+    title: "Chemistry", icon: "C", color: "#27AE60",
+    badge: "Chemistry Expert",
+    lessons: [
+      {
+        id: "atomic", title: "Atomic Structure",
+        introduction: "All matter is made of atoms. An atom consists of a nucleus containing protons and neutrons, surrounded by electrons in shells. The number of protons defines the element - carbon always has 6 protons, oxygen always has 8. Electrons occupy energy levels and their arrangement determines how atoms bond with each other.",
+        keyConcepts: [
+          "Atoms consist of protons (positive), neutrons (neutral), and electrons (negative)",
+          "Atomic number = number of protons = number of electrons in a neutral atom",
+          "Mass number = protons + neutrons",
+          "Electrons occupy shells - the first holds 2, the second holds 8, the third holds 8",
+          "Isotopes are atoms of the same element with different numbers of neutrons",
+        ],
+        workedExample: {
+          problem: "An atom has 17 protons and 18 neutrons. Identify the element and write its atomic notation.",
+          steps: [
+            "Atomic number = 17 protons - this is Chlorine (Cl)",
+            "Mass number = protons + neutrons = 17 + 18 = 35",
+            "Electron configuration: 2, 8, 7 (17 electrons total)",
+            "Notation: 3517Cl",
+          ],
+          answer: "Chlorine-35: atomic number 17, mass number 35, configuration 2,8,7"
+        },
+        equations: "A = Z + N  |  Z = protons = electrons  |  Isotopes: same Z, different N",
+        controls: [
+          { id: "protons", label: "Protons", min: 1, max: 18, val: 6, unit: "" },
+          { id: "neutrons", label: "Neutrons", min: 1, max: 20, val: 6, unit: "" },
+        ],
+        simKey: "atomic",
+      },
+      {
+        id: "bonding", title: "Chemical Bonding",
+        introduction: "Atoms bond together to form molecules and compounds. Ionic bonds form when electrons transfer from one atom to another - creating oppositely charged ions that attract. Covalent bonds form when atoms share electrons. Metallic bonds form in metals where electrons are shared across the whole structure. The type of bond determines the properties of the substance.",
+        keyConcepts: [
+          "Ionic bonds: electron transfer between metal and non-metal - forms ions",
+          "Covalent bonds: electron sharing between non-metals - forms molecules",
+          "Metallic bonds: delocalised electrons shared across metal lattice",
+          "Electronegativity difference determines bond type - large difference means ionic",
+          "Bond strength affects melting point - stronger bonds need more energy to break",
+        ],
+        workedExample: {
+          problem: "Sodium (Na) reacts with Chlorine (Cl) to form sodium chloride. Describe the bonding.",
+          steps: [
+            "Na has 1 electron in its outer shell - it wants to lose it",
+            "Cl has 7 electrons in its outer shell - it wants to gain one",
+            "Na transfers its outer electron to Cl",
+            "Na becomes Na+ (positive ion), Cl becomes Cl- (negative ion)",
+            "Opposite charges attract - ionic bond forms",
+          ],
+          answer: "Ionic bond - Na+ and Cl- attract each other electrostatically"
+        },
+        equations: "NaCl: Na -> Na+ + e-  |  Cl + e- -> Cl-  |  deltaEN > 1.7 = ionic",
+        controls: [
+          { id: "element1", label: "Element 1 (Z)", min: 1, max: 18, val: 11, unit: "" },
+          { id: "element2", label: "Element 2 (Z)", min: 1, max: 18, val: 17, unit: "" },
+        ],
+        simKey: "bonding",
+      },
+      {
+        id: "reactions", title: "Reactions & Stoichiometry",
+        introduction: "Chemical reactions rearrange atoms to form new substances. The law of conservation of mass means atoms are never created or destroyed - equations must be balanced. Stoichiometry uses the mole concept to calculate exactly how much of each substance reacts and how much product forms. This is the mathematics that makes chemistry quantitative.",
+        keyConcepts: [
+          "Chemical equations must be balanced - same atoms on both sides",
+          "One mole = 6.022x1023 particles (Avogadro's number)",
+          "Molar mass = mass of one mole in grams = relative atomic mass in g/mol",
+          "Moles = mass / molar mass",
+          "Limiting reagent: the reactant that runs out first and limits product formed",
+        ],
+        workedExample: {
+          problem: "How many grams of water form when 4g of hydrogen reacts with excess oxygen? (H2 + O2 -> H2O)",
+          steps: [
+            "Balanced equation: 2H2 + O2 -> 2H2O",
+            "Moles of H2 = mass/molar mass = 4/2 = 2 moles",
+            "From equation: 2 moles H2 produces 2 moles H2O",
+            "Mass of H2O = moles x molar mass = 2 x 18 = 36g",
+          ],
+          answer: "36g of water produced"
+        },
+        equations: "n = m/M  |  N = n x Na  |  Na = 6.022x1023 mol-1",
+        controls: [
+          { id: "moles", label: "Moles of reactant", min: 1, max: 10, val: 2, unit: " mol" },
+        ],
+        simKey: "reactions",
+      },
+      {
+        id: "thermochem", title: "Thermochemistry",
+        introduction: "Chemical reactions either release or absorb energy as heat. Exothermic reactions release heat - the products have less energy than the reactants. Endothermic reactions absorb heat - the products have more energy. Enthalpy change (deltaH) measures this energy. Understanding thermochemistry explains why fuels burn, why refrigerators work, and how our bodies extract energy from food.",
+        keyConcepts: [
+          "Exothermic reactions release heat - deltaH is negative",
+          "Endothermic reactions absorb heat - deltaH is positive",
+          "Enthalpy (H) measures the heat content of a system at constant pressure",
+          "Bond breaking absorbs energy, bond making releases energy",
+          "Hess's Law: total enthalpy change is independent of the route taken",
+        ],
+        workedExample: {
+          problem: "When 2g of methane burns completely, 111kJ of heat is released. Find the molar enthalpy of combustion.",
+          steps: [
+            "Moles of methane = mass/molar mass = 2/16 = 0.125 mol",
+            "Heat released per mole = 111/0.125 = 888 kJ/mol",
+            "Since heat is released, deltaH is negative",
+            "Molar enthalpy of combustion = -888 kJ/mol",
+          ],
+          answer: "deltaH_combustion = -888 kJ/mol"
+        },
+        equations: "deltaH = H_products - H_reactants  |  q = mcdeltaT  |  Exothermic: deltaH < 0",
+        controls: [
+          { id: "deltaH", label: "deltaH (kJ/mol)", min: -500, max: 500, val: -200, unit: "" },
+        ],
+        simKey: "thermochem",
+      },
+      {
+        id: "kinetics", title: "Chemical Kinetics",
+        introduction: "Chemical kinetics studies how fast reactions occur and what factors affect reaction rate. Temperature, concentration, surface area, and catalysts all affect how quickly reactants become products. Understanding kinetics is crucial in industrial chemistry - making reactions fast enough to be profitable, and in medicine - understanding how drugs work in the body.",
+        keyConcepts: [
+          "Reaction rate = change in concentration / change in time",
+          "Higher temperature increases rate - more particles have enough activation energy",
+          "Higher concentration increases rate - more frequent collisions",
+          "A catalyst provides an alternative pathway with lower activation energy",
+          "Activation energy is the minimum energy needed for a reaction to occur",
+        ],
+        workedExample: {
+          problem: "A reaction rate doubles for every 10 degreesC rise in temperature. If the rate at 20 degreesC is 0.01 mol/L/s, find the rate at 50 degreesC.",
+          steps: [
+            "Temperature increase = 50 - 20 = 30 degreesC",
+            "Number of 10 degreesC rises = 30/10 = 3",
+            "Rate multiplier = 23 = 8",
+            "New rate = 0.01 x 8 = 0.08 mol/L/s",
+          ],
+          answer: "Rate at 50 degreesC = 0.08 mol/L/s"
+        },
+        equations: "rate = k[A]n[B]m  |  k = Ae^(-Ea/RT)  |  t1/2 = ln2/k",
+        controls: [
+          { id: "temperature", label: "Temperature", min: 20, max: 100, val: 50, unit: " degreesC" },
+          { id: "concentration", label: "Concentration", min: 1, max: 10, val: 5, unit: " mol/L" },
+        ],
+        simKey: "kinetics",
+      },
+    ],
+  },
 };
-
 const TOPIC_KEYS = Object.keys(topics);
 function SimCanvas({ simKey, controls }) {
   const canvasRef = useRef(null);
@@ -533,6 +672,16 @@ function SimCanvas({ simKey, controls }) {
       else if (simKey === "refraction") drawRefraction(ctx, W, H, t, controls);
       else if (simKey === "diffraction") drawDiffraction(ctx, W, H, t, controls);
       else if (simKey === "polarisation") drawPolarisation(ctx, W, H, t, controls);
+      else if (simKey === "atomic") drawAtomic(ctx, W, H, t, controls);
+      else if (simKey === "bonding") drawBonding(ctx, W, H, t, controls);
+      else if (simKey === "reactions") drawReactions(ctx, W, H, t, controls);
+      else if (simKey === "thermochem") drawThermochem(ctx, W, H, t, controls);
+      else if (simKey === "kinetics") drawKinetics(ctx, W, H, t, controls);
+      else if (simKey === "atomic") drawAtomic(ctx, W, H, t, controls);
+      else if (simKey === "bonding") drawBonding(ctx, W, H, t, controls);
+      else if (simKey === "reactions") drawReactions(ctx, W, H, t, controls);
+      else if (simKey === "thermochem") drawThermochem(ctx, W, H, t, controls);
+      else if (simKey === "kinetics") drawKinetics(ctx, W, H, t, controls);
       else if (simKey === "circuits") drawCircuits(ctx, W, H, t, controls);
 else if (simKey === "structures") drawStructures(ctx, W, H, t, controls);
 else if (simKey === "fluid") drawFluid(ctx, W, H, t, controls);
@@ -1172,6 +1321,172 @@ function drawSignals(ctx, W, H, t, controls) {
   });
   ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
   ctx.fillText("Signal 1: " + f1 + "Hz  +  Signal 2: " + f2 + "Hz  =  Combined", W/2, H-8);
+  ctx.textAlign = "left";
+}
+
+
+
+function drawAtomic(ctx, W, H, t, controls) {
+  const protons = controls.protons || 6;
+  const neutrons = controls.neutrons || 6;
+  const cx = W / 2, cy = H / 2;
+  const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 20);
+  grad.addColorStop(0, "#f09b79");
+  grad.addColorStop(1, "#D85A30");
+  ctx.beginPath(); ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+  ctx.fillStyle = grad; ctx.fill();
+  ctx.fillStyle = "#fff"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText(protons + "p", cx, cy - 3);
+  ctx.fillText(neutrons + "n", cx, cy + 10);
+  const shells = [{ r: 60, max: 2 }, { r: 110, max: 8 }, { r: 160, max: 8 }];
+  let remaining = protons;
+  shells.forEach(function(shell, si) {
+    const electrons = Math.min(remaining, shell.max);
+    remaining -= electrons;
+    if (electrons <= 0) return;
+    ctx.beginPath(); ctx.arc(cx, cy, shell.r, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 1; ctx.stroke();
+    for (let i = 0; i < electrons; i++) {
+      const angle = (i / electrons) * Math.PI * 2 + t * (1 - si * 0.3);
+      const ex = cx + shell.r * Math.cos(angle);
+      const ey = cy + shell.r * Math.sin(angle);
+      ctx.beginPath(); ctx.arc(ex, ey, 5, 0, Math.PI * 2);
+      ctx.fillStyle = "#378ADD"; ctx.fill();
+    }
+  });
+  const elements = ["H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar"];
+  const symbol = elements[protons - 1] || "?";
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Element: " + symbol + "  Z=" + protons + "  A=" + (protons+neutrons) + "  Electrons: " + protons, W/2, H-8);
+  ctx.textAlign = "left";
+}
+
+function drawBonding(ctx, W, H, t, controls) {
+  const z1 = controls.element1 || 11;
+  const z2 = controls.element2 || 17;
+  const elements = ["H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar"];
+  const sym1 = elements[z1-1] || "?";
+  const sym2 = elements[z2-1] || "?";
+  const outerElectrons = function(z) {
+    if (z <= 2) return z;
+    if (z <= 10) return z - 2;
+    if (z <= 18) return z - 10;
+    return z - 18;
+  };
+  const e1 = outerElectrons(z1), e2 = outerElectrons(z2);
+  const cx1 = W * 0.3, cx2 = W * 0.7, cy = H / 2;
+  const r = 50;
+  [{ cx: cx1, sym: sym1, e: e1, col: "#E85D24" },
+   { cx: cx2, sym: sym2, e: e2, col: "#378ADD" }].forEach(function(atom) {
+    ctx.beginPath(); ctx.arc(atom.cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = atom.col; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = atom.col + "22"; ctx.fill();
+    ctx.fillStyle = atom.col; ctx.font = "bold 16px monospace"; ctx.textAlign = "center";
+    ctx.fillText(atom.sym, atom.cx, cy + 5);
+    ctx.fillStyle = "rgba(255,255,255,0.5)"; ctx.font = "11px monospace";
+    ctx.fillText(atom.e + " outer e-", atom.cx, cy + r + 18);
+    for (let i = 0; i < atom.e; i++) {
+      const angle = (i / Math.max(atom.e, 1)) * Math.PI * 2;
+      const ex = atom.cx + (r + 12) * Math.cos(angle);
+      const ey = cy + (r + 12) * Math.sin(angle);
+      ctx.beginPath(); ctx.arc(ex, ey, 4, 0, Math.PI * 2);
+      ctx.fillStyle = atom.col; ctx.fill();
+    }
+  });
+  const enDiff = Math.abs(e1 - e2);
+  const bondType = enDiff > 4 ? "Ionic" : enDiff > 1 ? "Polar Covalent" : "Covalent";
+  const bondCol = enDiff > 4 ? "#E85D24" : enDiff > 1 ? "#F2C94C" : "#1D9E75";
+  ctx.strokeStyle = bondCol; ctx.lineWidth = 3; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(cx1 + r, cy); ctx.lineTo(cx2 - r, cy); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = bondCol; ctx.font = "bold 13px monospace"; ctx.textAlign = "center";
+  ctx.fillText(bondType, W/2, cy - 20);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText(sym1 + "(Z=" + z1 + ")  +  " + sym2 + "(Z=" + z2 + ")  =  " + bondType, W/2, H-8);
+  ctx.textAlign = "left";
+}
+
+function drawReactions(ctx, W, H, t, controls) {
+  const moles = controls.moles || 2;
+  const phase = (t * 0.3) % 1;
+  const cx = W / 2, cy = H / 2;
+  for (let i = 0; i < moles * 3; i++) {
+    const startX = 80 + (i % 3) * 30;
+    const startY = cy - 40 + Math.floor(i / 3) * 30;
+    const endX = W - 120 + (i % 2) * 20;
+    const endY = cy - 20 + Math.floor(i / 2) * 20;
+    const px = startX + (endX - startX) * Math.min(phase * 2, 1);
+    const py = startY + (endY - startY) * Math.min(phase * 2, 1);
+    ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2);
+    ctx.fillStyle = phase < 0.5 ? "#E85D24" : "#1D9E75"; ctx.fill();
+  }
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(cx, 20); ctx.lineTo(cx, H - 20); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#E85D24"; ctx.font = "13px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Reactants", cx * 0.5, 30);
+  ctx.fillStyle = "#1D9E75"; ctx.fillText("Products", cx * 1.5, 30);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText(moles + " mol reactant -> " + moles + " mol product | Mass conserved", W/2, H-8);
+  ctx.textAlign = "left";
+}
+
+function drawThermochem(ctx, W, H, t, controls) {
+  const deltaH = controls.deltaH || -200;
+  const exothermic = deltaH < 0;
+  const ox = 80, oy = H * 0.7, gw = W - 160, gh = H * 0.5;
+  ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(ox, oy - gh); ctx.lineTo(ox, oy); ctx.stroke();
+  const reactantH = oy - gh * 0.7;
+  const productH = exothermic ? oy - gh * 0.3 : oy - gh * 0.9;
+  const tsH = exothermic ? oy - gh * 0.85 : oy - gh * 0.95;
+  ctx.strokeStyle = "#378ADD"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(ox, reactantH); ctx.lineTo(ox + gw * 0.25, reactantH); ctx.stroke();
+  ctx.fillStyle = "#378ADD"; ctx.font = "12px monospace"; ctx.textAlign = "left";
+  ctx.fillText("Reactants", ox + 4, reactantH - 8);
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(ox + gw * 0.75, productH); ctx.lineTo(ox + gw, productH); ctx.stroke();
+  ctx.fillStyle = "#1D9E75"; ctx.fillText("Products", ox + gw * 0.75 + 4, productH - 8);
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 1.5; ctx.setLineDash([4,4]);
+  ctx.beginPath();
+  ctx.moveTo(ox + gw * 0.25, reactantH);
+  ctx.bezierCurveTo(ox + gw*0.35, tsH, ox + gw*0.5, tsH, ox + gw*0.6, tsH);
+  ctx.bezierCurveTo(ox + gw*0.65, tsH, ox + gw*0.7, productH, ox + gw*0.75, productH);
+  ctx.stroke(); ctx.setLineDash([]);
+  if (Math.abs(productH - reactantH) > 5) {
+    ctx.strokeStyle = exothermic ? "#E85D24" : "#1D9E75"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(ox + gw*0.85, reactantH); ctx.lineTo(ox + gw*0.85, productH); ctx.stroke();
+    ctx.fillStyle = exothermic ? "#E85D24" : "#1D9E75"; ctx.textAlign = "center";
+    ctx.fillText("dH=" + deltaH + "kJ", ox + gw*0.85 + 35, (reactantH + productH)/2);
+  }
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText((exothermic ? "Exothermic" : "Endothermic") + "  dH=" + deltaH + " kJ/mol", W/2, H-8);
+  ctx.textAlign = "left";
+}
+
+function drawKinetics(ctx, W, H, t, controls) {
+  const temp = controls.temperature || 50;
+  const conc = controls.concentration || 5;
+  const rate = (conc * 0.1) * Math.exp((temp - 20) * 0.07);
+  const speed = temp / 30;
+  const particleCount = Math.floor(conc * 3);
+  ctx.strokeStyle = "rgba(255,255,255,0.15)"; ctx.lineWidth = 1;
+  ctx.strokeRect(40, 40, W - 80, H - 80);
+  for (let i = 0; i < particleCount; i++) {
+    const px = 40 + ((Math.sin(t * speed + i * 1.3) + 1) / 2) * (W - 80);
+    const py = 40 + ((Math.cos(t * speed * 0.7 + i * 2.1) + 1) / 2) * (H - 80);
+    ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2);
+    ctx.fillStyle = i % 3 === 0 ? "#378ADD" : "#E85D24"; ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.font = "9px monospace"; ctx.textAlign = "center";
+    ctx.fillText(i % 3 === 0 ? "B" : "A", px, py + 3);
+  }
+  const rateBarH = Math.min(rate * 20, H * 0.6);
+  ctx.fillStyle = "#1D9E75";
+  ctx.fillRect(W - 35, H - 45 - rateBarH, 20, rateBarH);
+  ctx.fillStyle = "rgba(255,255,255,0.3)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("rate", W - 25, H - 30);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText("T=" + temp + "C  conc=" + conc + "mol/L  rate=" + rate.toFixed(3) + "mol/L/s", W/2, H-8);
   ctx.textAlign = "left";
 }
 
