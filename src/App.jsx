@@ -1728,6 +1728,428 @@ function drawGraphs(ctx, W, H, t, controls) {
   ctx.fillText(`y = ${m}x ${c >= 0 ? '+' : ''}${c}  |  gradient = ${m}  |  y-intercept = ${c}`, W / 2, H - 8);
   ctx.textAlign = "left";
 }
+
+function PracticeProblems({ topic, lesson }) {
+  const [stage, setStage] = useState("start");
+  const [problems, setProblems] = useState([]);
+  const [current, setCurrent] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [hint, setHint] = useState("");
+  const [showHint, setShowHint] = useState(false);
+  const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [hintLoading, setHintLoading] = useState(false);
+  const [results, setResults] = useState([]);
+
+  async function generateProblems() {
+    setStage("loading");
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 2000,
+          system: "You are a physics and science problem generator. Generate exactly 5 practice problems. Return ONLY a JSON array with no other text: [{"problem": "...", "answer": "...", "hint": "...", "difficulty": "easy|medium|hard"}]. Problems should be solvable with calculation. Include numbers. Keep answers concise (1-2 sentences with the final value).",
+          messages: [{ role: "user", content: "Generate 5 practice problems about " + lesson.title + " in " + topic.title + ". Key equations: " + lesson.equations + ". Mix of easy, medium and hard difficulty. Include numerical calculations." }],
+        }),
+      });
+      const data = await res.json();
+      const text = data.content[0].text;
+      const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
+      setProblems(parsed);
+      setStage("practice");
+    } catch(e) {
+      setStage("error");
+    }
+  }
+
+  async function checkAnswer() {
+    if (!answer.trim() || loading) return;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 300,
+          system: "You are grading a student answer. Be encouraging and fair. Accept answers that show correct understanding even if not perfectly worded. Reply ONLY with JSON: {"correct": true or false, "feedback": "1-2 sentences of encouraging feedback explaining the answer"}",
+          messages: [{ role: "user", content: "Problem: " + problems[current].problem + "
+Expected answer: " + problems[current].answer + "
+Student answer: " + answer + "
+Is this correct?" }],
+        }),
+      });
+      const data = await res.json();
+      const result = JSON.parse(data.content[0].text.replace(/```json|```/g, "").trim());
+      setFeedback(result.feedback);
+      if (result.correct) setScore(s => s + 1);
+      setResults(prev => [...prev, { problem: problems[current].problem, answer, correct: result.correct, feedback: result.feedback }]);
+      setLoading(false);
+      setTimeout(() => {
+        if (current + 1 >= problems.length) {
+          setStage("results");
+        } else {
+          setCurrent(c => c + 1);
+          setAnswer("");
+          setFeedback("");
+          setHint("");
+          setShowHint(false);
+        }
+      }, 2500);
+    } catch(e) {
+      setFeedback("Could not grade. Please try again.");
+      setLoading(false);
+    }
+  }
+
+  async function getHint() {
+    if (hintLoading) return;
+    setHintLoading(true);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 200,
+          system: "You are a helpful tutor giving a hint. Give a useful hint that guides without giving away the answer. Keep it to 1-2 sentences.",
+          messages: [{ role: "user", content: "Give me a hint for this problem: " + problems[current].problem + "
+Equations available: " + lesson.equations }],
+        }),
+      });
+      const data = await res.json();
+      setHint(data.content[0].text);
+      setShowHint(true);
+    } catch(e) {
+      setHint("Think about which equation applies here.");
+      setShowHint(true);
+    }
+    setHintLoading(false);
+  }
+
+  const diffColor = { easy: "#1D9E75", medium: "#F2C94C", hard: "#E85D24" };
+
+  if (stage === "start") return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16, padding: 24 }}>
+      <div style={{ fontSize: 32 }}>📝</div>
+      <div style={{ fontSize: 15, fontWeight: 500, color: "#fff" }}>Practice Problems</div>
+      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", textAlign: "center", maxWidth: 340, lineHeight: 1.6 }}>
+        5 AI-generated problems on {lesson.title}. Mix of easy, medium and hard. Hints available if you get stuck.
+      </div>
+      <button onClick={generateProblems} style={{ padding: "10px 28px", borderRadius: 8, border: "none", background: topic.color, color: "#fff", fontSize: 14, cursor: "pointer", fontFamily: "system-ui, sans-serif", marginTop: 8 }}>
+        Start Practice
+      </button>
+    </div>
+  );
+
+  if (stage === "loading") return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
+      Generating problems...
+    </div>
+  );
+
+  if (stage === "error") return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 12 }}>
+      <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>Could not generate problems. Check your connection.</div>
+      <button onClick={() => setStage("start")} style={{ padding: "8px 20px", borderRadius: 8, border: "0.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "#fff", cursor: "pointer", fontSize: 13 }}>Try Again</button>
+    </div>
+  );
+
+  if (stage === "practice") return (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", gap: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Problem {current + 1} of {problems.length}</span>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {problems[current]?.difficulty && (
+            <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 20, background: (diffColor[problems[current].difficulty] || "#378ADD") + "22", color: diffColor[problems[current].difficulty] || "#378ADD", border: "0.5px solid " + (diffColor[problems[current].difficulty] || "#378ADD") + "44" }}>
+              {problems[current].difficulty}
+            </span>
+          )}
+          <span style={{ fontSize: 12, color: topic.color }}>Score: {score}/{current}</span>
+        </div>
+      </div>
+
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ fontSize: 14, color: "#fff", lineHeight: 1.7, padding: 14, background: "rgba(255,255,255,0.05)", borderRadius: 8, borderLeft: "2px solid " + topic.color }}>
+          {problems[current]?.problem}
+        </div>
+
+        {showHint && (
+          <div style={{ fontSize: 13, padding: "10px 14px", borderRadius: 8, background: "rgba(242,201,76,0.1)", color: "#F2C94C", border: "0.5px solid rgba(242,201,76,0.3)", lineHeight: 1.6 }}>
+            Hint: {hint}
+          </div>
+        )}
+
+        {feedback && (
+          <div style={{ fontSize: 13, padding: "10px 14px", borderRadius: 8, lineHeight: 1.6, background: results[results.length-1]?.correct ? "rgba(29,158,117,0.15)" : "rgba(232,93,36,0.15)", color: results[results.length-1]?.correct ? "#1D9E75" : "#E85D24", border: "0.5px solid " + (results[results.length-1]?.correct ? "rgba(29,158,117,0.3)" : "rgba(232,93,36,0.3)") }}>
+            {results[results.length-1]?.correct ? "Correct! " : "Not quite. "}{feedback}
+          </div>
+        )}
+      </div>
+
+      <div style={{ display: "flex", gap: 8, flexDirection: "column" }}>
+        <div style={{ display: "flex", gap: 8 }}>
+          <input
+            value={answer}
+            onChange={e => setAnswer(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && checkAnswer()}
+            placeholder="Type your answer..."
+            disabled={!!feedback}
+            style={{ flex: 1, padding: "9px 14px", borderRadius: 8, border: "0.5px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.05)", color: "#fff", fontSize: 13, fontFamily: "system-ui, sans-serif", outline: "none", opacity: feedback ? 0.5 : 1 }}
+          />
+          <button onClick={checkAnswer} disabled={!!feedback || loading} style={{ padding: "9px 18px", borderRadius: 8, border: "none", background: topic.color, color: "#fff", fontSize: 13, cursor: feedback || loading ? "not-allowed" : "pointer", opacity: feedback || loading ? 0.6 : 1 }}>
+            {loading ? "Checking..." : "Submit"}
+          </button>
+        </div>
+        {!feedback && !showHint && (
+          <button onClick={getHint} disabled={hintLoading} style={{ padding: "6px", borderRadius: 8, border: "0.5px solid rgba(242,201,76,0.3)", background: "transparent", color: "#F2C94C", fontSize: 12, cursor: "pointer", fontFamily: "system-ui, sans-serif" }}>
+            {hintLoading ? "Getting hint..." : "Need a hint?"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  if (stage === "results") return (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", gap: 12, overflowY: "auto" }}>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: 36, marginBottom: 6 }}>{score === problems.length ? "🎉" : score >= problems.length * 0.6 ? "👍" : "📚"}</div>
+        <div style={{ fontSize: 20, fontWeight: 500, color: "#fff" }}>{score} / {problems.length}</div>
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
+          {score === problems.length ? "Perfect! You mastered this topic!" : score >= problems.length * 0.6 ? "Good work! Keep practising!" : "Keep studying and try again!"}
+        </div>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {results.map((r, i) => (
+          <div key={i} style={{ padding: "10px 12px", borderRadius: 8, background: r.correct ? "rgba(29,158,117,0.1)" : "rgba(232,93,36,0.1)", border: "0.5px solid " + (r.correct ? "rgba(29,158,117,0.25)" : "rgba(232,93,36,0.25)") }}>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 3 }}>Q{i+1}: {r.problem}</div>
+            <div style={{ fontSize: 11, color: r.correct ? "#1D9E75" : "#E85D24" }}>{r.correct ? "✓" : "✗"} {r.answer}</div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 3 }}>{r.feedback}</div>
+          </div>
+        ))}
+      </div>
+      <button onClick={() => { setStage("start"); setAnswer(""); setFeedback(""); setCurrent(0); setScore(0); setResults([]); setHint(""); setShowHint(false); }}
+        style={{ padding: "10px 28px", borderRadius: 8, border: "none", background: topic.color, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui, sans-serif", alignSelf: "center" }}>
+        Try Again
+      </button>
+    </div>
+  );
+}
+
+
+function PracticeProblems({ topic, lesson }) {
+  const [stage, setStage] = useState("start");
+  const [problems, setProblems] = useState([]);
+  const [current, setCurrent] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [hint, setHint] = useState("");
+  const [showHint, setShowHint] = useState(false);
+  const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [hintLoading, setHintLoading] = useState(false);
+  const [results, setResults] = useState([]);
+
+  async function generateProblems() {
+    setStage("loading");
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 2000,
+          system: "You are a physics and science problem generator. Generate exactly 5 practice problems. Return ONLY a JSON array with no other text: [{"problem": "...", "answer": "...", "hint": "...", "difficulty": "easy|medium|hard"}]. Problems should be solvable with calculation. Include numbers. Keep answers concise (1-2 sentences with the final value).",
+          messages: [{ role: "user", content: "Generate 5 practice problems about " + lesson.title + " in " + topic.title + ". Key equations: " + lesson.equations + ". Mix of easy, medium and hard difficulty. Include numerical calculations." }],
+        }),
+      });
+      const data = await res.json();
+      const text = data.content[0].text;
+      const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
+      setProblems(parsed);
+      setStage("practice");
+    } catch(e) {
+      setStage("error");
+    }
+  }
+
+  async function checkAnswer() {
+    if (!answer.trim() || loading) return;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 300,
+          system: "You are grading a student answer. Be encouraging and fair. Accept answers that show correct understanding even if not perfectly worded. Reply ONLY with JSON: {"correct": true or false, "feedback": "1-2 sentences of encouraging feedback explaining the answer"}",
+          messages: [{ role: "user", content: "Problem: " + problems[current].problem + "
+Expected answer: " + problems[current].answer + "
+Student answer: " + answer + "
+Is this correct?" }],
+        }),
+      });
+      const data = await res.json();
+      const result = JSON.parse(data.content[0].text.replace(/```json|```/g, "").trim());
+      setFeedback(result.feedback);
+      if (result.correct) setScore(s => s + 1);
+      setResults(prev => [...prev, { problem: problems[current].problem, answer, correct: result.correct, feedback: result.feedback }]);
+      setLoading(false);
+      setTimeout(() => {
+        if (current + 1 >= problems.length) {
+          setStage("results");
+        } else {
+          setCurrent(c => c + 1);
+          setAnswer("");
+          setFeedback("");
+          setHint("");
+          setShowHint(false);
+        }
+      }, 2500);
+    } catch(e) {
+      setFeedback("Could not grade. Please try again.");
+      setLoading(false);
+    }
+  }
+
+  async function getHint() {
+    if (hintLoading) return;
+    setHintLoading(true);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 200,
+          system: "You are a helpful tutor giving a hint. Give a useful hint that guides without giving away the answer. Keep it to 1-2 sentences.",
+          messages: [{ role: "user", content: "Give me a hint for this problem: " + problems[current].problem + "
+Equations available: " + lesson.equations }],
+        }),
+      });
+      const data = await res.json();
+      setHint(data.content[0].text);
+      setShowHint(true);
+    } catch(e) {
+      setHint("Think about which equation applies here.");
+      setShowHint(true);
+    }
+    setHintLoading(false);
+  }
+
+  const diffColor = { easy: "#1D9E75", medium: "#F2C94C", hard: "#E85D24" };
+
+  if (stage === "start") return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16, padding: 24 }}>
+      <div style={{ fontSize: 32 }}>📝</div>
+      <div style={{ fontSize: 15, fontWeight: 500, color: "#fff" }}>Practice Problems</div>
+      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", textAlign: "center", maxWidth: 340, lineHeight: 1.6 }}>
+        5 AI-generated problems on {lesson.title}. Mix of easy, medium and hard. Hints available if you get stuck.
+      </div>
+      <button onClick={generateProblems} style={{ padding: "10px 28px", borderRadius: 8, border: "none", background: topic.color, color: "#fff", fontSize: 14, cursor: "pointer", fontFamily: "system-ui, sans-serif", marginTop: 8 }}>
+        Start Practice
+      </button>
+    </div>
+  );
+
+  if (stage === "loading") return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
+      Generating problems...
+    </div>
+  );
+
+  if (stage === "error") return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 12 }}>
+      <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>Could not generate problems. Check your connection.</div>
+      <button onClick={() => setStage("start")} style={{ padding: "8px 20px", borderRadius: 8, border: "0.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "#fff", cursor: "pointer", fontSize: 13 }}>Try Again</button>
+    </div>
+  );
+
+  if (stage === "practice") return (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", gap: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Problem {current + 1} of {problems.length}</span>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {problems[current]?.difficulty && (
+            <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 20, background: (diffColor[problems[current].difficulty] || "#378ADD") + "22", color: diffColor[problems[current].difficulty] || "#378ADD", border: "0.5px solid " + (diffColor[problems[current].difficulty] || "#378ADD") + "44" }}>
+              {problems[current].difficulty}
+            </span>
+          )}
+          <span style={{ fontSize: 12, color: topic.color }}>Score: {score}/{current}</span>
+        </div>
+      </div>
+
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ fontSize: 14, color: "#fff", lineHeight: 1.7, padding: 14, background: "rgba(255,255,255,0.05)", borderRadius: 8, borderLeft: "2px solid " + topic.color }}>
+          {problems[current]?.problem}
+        </div>
+
+        {showHint && (
+          <div style={{ fontSize: 13, padding: "10px 14px", borderRadius: 8, background: "rgba(242,201,76,0.1)", color: "#F2C94C", border: "0.5px solid rgba(242,201,76,0.3)", lineHeight: 1.6 }}>
+            Hint: {hint}
+          </div>
+        )}
+
+        {feedback && (
+          <div style={{ fontSize: 13, padding: "10px 14px", borderRadius: 8, lineHeight: 1.6, background: results[results.length-1]?.correct ? "rgba(29,158,117,0.15)" : "rgba(232,93,36,0.15)", color: results[results.length-1]?.correct ? "#1D9E75" : "#E85D24", border: "0.5px solid " + (results[results.length-1]?.correct ? "rgba(29,158,117,0.3)" : "rgba(232,93,36,0.3)") }}>
+            {results[results.length-1]?.correct ? "Correct! " : "Not quite. "}{feedback}
+          </div>
+        )}
+      </div>
+
+      <div style={{ display: "flex", gap: 8, flexDirection: "column" }}>
+        <div style={{ display: "flex", gap: 8 }}>
+          <input
+            value={answer}
+            onChange={e => setAnswer(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && checkAnswer()}
+            placeholder="Type your answer..."
+            disabled={!!feedback}
+            style={{ flex: 1, padding: "9px 14px", borderRadius: 8, border: "0.5px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.05)", color: "#fff", fontSize: 13, fontFamily: "system-ui, sans-serif", outline: "none", opacity: feedback ? 0.5 : 1 }}
+          />
+          <button onClick={checkAnswer} disabled={!!feedback || loading} style={{ padding: "9px 18px", borderRadius: 8, border: "none", background: topic.color, color: "#fff", fontSize: 13, cursor: feedback || loading ? "not-allowed" : "pointer", opacity: feedback || loading ? 0.6 : 1 }}>
+            {loading ? "Checking..." : "Submit"}
+          </button>
+        </div>
+        {!feedback && !showHint && (
+          <button onClick={getHint} disabled={hintLoading} style={{ padding: "6px", borderRadius: 8, border: "0.5px solid rgba(242,201,76,0.3)", background: "transparent", color: "#F2C94C", fontSize: 12, cursor: "pointer", fontFamily: "system-ui, sans-serif" }}>
+            {hintLoading ? "Getting hint..." : "Need a hint?"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  if (stage === "results") return (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", gap: 12, overflowY: "auto" }}>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: 36, marginBottom: 6 }}>{score === problems.length ? "🎉" : score >= problems.length * 0.6 ? "👍" : "📚"}</div>
+        <div style={{ fontSize: 20, fontWeight: 500, color: "#fff" }}>{score} / {problems.length}</div>
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
+          {score === problems.length ? "Perfect! You mastered this topic!" : score >= problems.length * 0.6 ? "Good work! Keep practising!" : "Keep studying and try again!"}
+        </div>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {results.map((r, i) => (
+          <div key={i} style={{ padding: "10px 12px", borderRadius: 8, background: r.correct ? "rgba(29,158,117,0.1)" : "rgba(232,93,36,0.1)", border: "0.5px solid " + (r.correct ? "rgba(29,158,117,0.25)" : "rgba(232,93,36,0.25)") }}>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginBottom: 3 }}>Q{i+1}: {r.problem}</div>
+            <div style={{ fontSize: 11, color: r.correct ? "#1D9E75" : "#E85D24" }}>{r.correct ? "✓" : "✗"} {r.answer}</div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 3 }}>{r.feedback}</div>
+          </div>
+        ))}
+      </div>
+      <button onClick={() => { setStage("start"); setAnswer(""); setFeedback(""); setCurrent(0); setScore(0); setResults([]); setHint(""); setShowHint(false); }}
+        style={{ padding: "10px 28px", borderRadius: 8, border: "none", background: topic.color, color: "#fff", fontSize: 13, cursor: "pointer", fontFamily: "system-ui, sans-serif", alignSelf: "center" }}>
+        Try Again
+      </button>
+    </div>
+  );
+}
+
 function AskAI({ topic, lesson }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -1950,7 +2372,7 @@ function LessonView({ topic, lesson, onComplete, completed }) {
       </div>
     </div>,
 
-    // 4: Practice (AI tutor)
+    // 4: Practice Problems
     <div style={{ height: "100%" }}>
       <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Practice by asking questions, working through problems, or requesting additional examples.</div>
       <div style={{ height: "calc(100% - 40px)" }}>
