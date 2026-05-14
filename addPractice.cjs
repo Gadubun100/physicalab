@@ -1,16 +1,9 @@
 const fs = require('fs');
-let c = fs.readFileSync('src/App.jsx', 'utf8');
-
-const idx = c.indexOf('// 4: Practice Problems');
-const idx5 = c.indexOf('// 5: Quiz');
-
-const newStep4 = `// 4: Practice Problems
-    <div style={{ height: "100%" }}>
-      <PracticeProblems topic={topic} lesson={lesson} />
-    </div>,
-
-    `;
-
-c = c.substring(0, idx) + newStep4 + c.substring(idx5);
-fs.writeFileSync('src/App.jsx', c);
-console.log('Done! Step 4 replaced.');
+const c = fs.readFileSync('src/App.jsx', 'utf8');
+console.log('mobile.css:', c.includes('mobile.css'));
+console.log('app-container:', c.includes('app-container'));
+console.log('app-sidebar:', c.includes('className="app-sidebar"'));
+console.log('app-main:', c.includes('app-main'));
+console.log('app-header:', c.includes('app-header'));
+console.log('app-step-tabs:', c.includes('app-step-tabs'));
+console.log('app-sidebar-modules:', c.includes('app-sidebar-modules'));

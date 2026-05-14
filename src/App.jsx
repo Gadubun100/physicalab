@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "./mobile.css";
 
 const BADGE_ICONS = {
   mechanics: "⚙", waves: "〜", thermo: "🌡",
@@ -2192,7 +2193,7 @@ function LessonView({ topic, lesson, onComplete, completed }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       {/* Step tabs */}
-      <div style={{ display: "flex", gap: 0, borderBottom: "0.5px solid rgba(255,255,255,0.08)", overflowX: "auto" }}>
+      <div className="app-step-tabs" style={{ display: "flex", gap: 0, borderBottom: "0.5px solid rgba(255,255,255,0.08)", overflowX: "auto" }}>
         {STEPS.map((s, i) => (
           <button key={i} onClick={() => setStep(i)} style={{
             padding: "7px 12px", border: "none", background: "none", cursor: "pointer",
@@ -2258,9 +2259,9 @@ export default function App() {
   }
 
   return (
-    <div style={{ display: "flex", height: "100vh", background: "#0f1117", color: "#e8eaf0", fontFamily: "system-ui, sans-serif" }}>
+    <div className="app-container" style={{ display: "flex", height: "100vh", background: "#0f1117", color: "#e8eaf0", fontFamily: "system-ui, sans-serif" }}>
       {/* Sidebar */}
-      <div style={{ width: 230, borderRight: "0.5px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", background: "#0d0f14", overflowY: "auto" }}>
+      <div className="app-sidebar" style={{ width: 230, borderRight: "0.5px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", background: "#0d0f14", overflowY: "auto" }}>
         {/* Logo */}
         <div style={{ padding: "14px 16px 10px" }}>
           <div style={{ fontSize: 16, fontWeight: 600, letterSpacing: -0.3, marginBottom: 10 }}>
@@ -2284,6 +2285,7 @@ export default function App() {
         )}
 
         {/* Modules */}
+        <div className="app-sidebar-modules" style={{ display: "flex", flexDirection: "column", flex: 1, overflowY: "auto" }}>
         {TOPIC_KEYS.map((key) => {
           const val = topics[key];
           const tp = progress[key] || { lessons: [], badge: false };
@@ -2330,6 +2332,7 @@ export default function App() {
           );
         })}
 
+        </div>
         {/* Reset */}
         {totalCompleted > 0 && (
           <div style={{ padding: "10px 16px", marginTop: "auto", borderTop: "0.5px solid rgba(255,255,255,0.08)" }}>
@@ -2341,9 +2344,9 @@ export default function App() {
       </div>
 
       {/* Main */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+      <div className="app-main" style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
         {/* Header */}
-        <div style={{ padding: "12px 20px", borderBottom: "0.5px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 12 }}>
+        <div className="app-header" style={{ padding: "12px 20px", borderBottom: "0.5px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 12 }}>
           <div>
             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 2 }}>{topic.title}</div>
             <div style={{ fontSize: 16, fontWeight: 500, display: "flex", alignItems: "center", gap: 8 }}>
