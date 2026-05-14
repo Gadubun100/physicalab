@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import LandingPage from "./landing.jsx";
+import StuckButton from "./stuck.jsx";
+
 import "./mobile.css";
 
 const BADGE_ICONS = {
@@ -2127,6 +2129,7 @@ function LessonView({ topic, lesson, onComplete, completed }) {
           <Controls controls={controls} values={controlValues} onChange={(id, val) => setControlValues(prev => ({ ...prev, [id]: val }))} />
         </div>
       )}
+      <StuckButton topic={topic} lesson={lesson} />
     </div>,
 
     // 2: Key Concepts
