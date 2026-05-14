@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import LandingPage from "./landing.jsx";
 import "./mobile.css";
 
 const BADGE_ICONS = {
@@ -2227,6 +2228,7 @@ function LessonView({ topic, lesson, onComplete, completed }) {
 }
 
 export default function App() {
+  const [showLanding, setShowLanding] = useState(() => !localStorage.getItem("physicalab_visited"));
   const [activeTopic, setActiveTopic] = useState("mechanics");
   const [activeLesson, setActiveLesson] = useState(0);
   const [progress, setProgress] = useState(() => {
@@ -2257,6 +2259,8 @@ export default function App() {
     setActiveTopic(key);
     setActiveLesson(0);
   }
+
+  if (showLanding) return <LandingPage onStart={() => { localStorage.setItem("physicalab_visited", "1"); setShowLanding(false); }} />;
 
   return (
     <div className="app-container" style={{ display: "flex", height: "100vh", background: "#0f1117", color: "#e8eaf0", fontFamily: "system-ui, sans-serif" }}>
