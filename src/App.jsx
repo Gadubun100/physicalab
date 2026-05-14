@@ -1751,7 +1751,7 @@ function PracticeProblems({ topic, lesson }) {
         body: JSON.stringify({
           model: "claude-sonnet-4-5",
           max_tokens: 2000,
-          system: "You are a physics and science problem generator. Generate exactly 5 practice problems. Return ONLY a JSON array with no other text: [{"problem": "...", "answer": "...", "hint": "...", "difficulty": "easy|medium|hard"}]. Problems should be solvable with calculation. Include numbers. Keep answers concise (1-2 sentences with the final value).",
+          system: "You are a physics and science problem generator. Generate exactly 5 practice problems. Return ONLY a JSON array with no other text: [{problem, answer, hint, difficulty}]. Problems should be solvable with calculation. Include numbers. Keep answers concise (1-2 sentences with the final value).",
           messages: [{ role: "user", content: "Generate 5 practice problems about " + lesson.title + " in " + topic.title + ". Key equations: " + lesson.equations + ". Mix of easy, medium and hard difficulty. Include numerical calculations." }],
         }),
       });
@@ -1775,11 +1775,8 @@ function PracticeProblems({ topic, lesson }) {
         body: JSON.stringify({
           model: "claude-sonnet-4-5",
           max_tokens: 300,
-          system: "You are grading a student answer. Be encouraging and fair. Accept answers that show correct understanding even if not perfectly worded. Reply ONLY with JSON: {"correct": true or false, "feedback": "1-2 sentences of encouraging feedback explaining the answer"}",
-          messages: [{ role: "user", content: "Problem: " + problems[current].problem + "
-Expected answer: " + problems[current].answer + "
-Student answer: " + answer + "
-Is this correct?" }],
+          system: "You are grading a student answer. Be encouraging and fair. Accept answers that show correct understanding even if not perfectly worded. Reply ONLY with JSON with correct boolean and feedback string.",
+          messages: [{ role: "user", content: "Problem: " + problems[current].problem + " Expected answer: " + problems[current].answer + " Student answer: " + answer + " Is this correct?" }],
         }),
       });
       const data = await res.json();
@@ -1816,8 +1813,7 @@ Is this correct?" }],
           model: "claude-sonnet-4-5",
           max_tokens: 200,
           system: "You are a helpful tutor giving a hint. Give a useful hint that guides without giving away the answer. Keep it to 1-2 sentences.",
-          messages: [{ role: "user", content: "Give me a hint for this problem: " + problems[current].problem + "
-Equations available: " + lesson.equations }],
+          messages: [{ role: "user", content: "Give me a hint for this problem: " + problems[current].problem + " Equations available: " + lesson.equations }],
         }),
       });
       const data = await res.json();
@@ -2164,10 +2160,7 @@ function LessonView({ topic, lesson, onComplete, completed }) {
 
     // 4: Practice Problems
     <div style={{ height: "100%" }}>
-      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 10 }}>Practice by asking questions, working through problems, or requesting additional examples.</div>
-      <div style={{ height: "calc(100% - 40px)" }}>
-        <AskAI topic={topic} lesson={lesson} />
-      </div>
+      <PracticeProblems topic={topic} lesson={lesson} />
     </div>,
 
     // 5: Quiz

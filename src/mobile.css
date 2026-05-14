@@ -1,0 +1,55 @@
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+
+  .app-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    border-right: none !important;
+    border-bottom: 0.5px solid rgba(255,255,255,0.1) !important;
+    padding: 4px 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .app-sidebar-header {
+    display: none !important;
+  }
+
+  .app-sidebar-modules {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    flex: 1 !important;
+    padding: 0 !important;
+  }
+
+  .app-main {
+    flex: 1 !important;
+    overflow: hidden !important;
+    height: calc(100vh - 52px) !important;
+  }
+
+  .app-header {
+    padding: 8px 12px !important;
+  }
+
+  .app-subtopic-chips {
+    display: none !important;
+  }
+
+  .app-step-tabs {
+    overflow-x: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header-title {
+    font-size: 13px !important;
+  }
+}
