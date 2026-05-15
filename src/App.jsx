@@ -171,10 +171,10 @@ const topics = {
     badge: "Thermo Expert",
     lessons: [
       { id: "kinetic", title: "Kinetic Gas Theory", introduction: "All matter is made of constantly moving particles. In a gas, molecules zoom around randomly at high speeds, colliding with each other and with the walls of their container. Temperature is simply a measure of the average kinetic energy of these particles — hotter means faster moving molecules.", keyConcepts: ["Gas molecules are in constant random motion", "Temperature measures average kinetic energy of molecules", "Pressure is caused by molecules hitting the container walls", "Higher temperature means faster molecules and greater pressure", "Absolute zero (0K) is the temperature at which all molecular motion stops"], workedExample: { problem: "Find the average kinetic energy of gas molecules at 300K.", steps: ["Use formula: KE = (3/2)kT where k = 1.38×10⁻²³ J/K", "Substitute: KE = 1.5 × 1.38×10⁻²³ × 300", "Calculate: KE = 1.5 × 4.14×10⁻²¹", "Result: KE = 6.21×10⁻²¹ J"], answer: "Average KE = 6.21×10⁻²¹ J per molecule" }, equations: "PV = nRT  |  KE = ½mv²  |  KE_avg = (3/2)kT", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "thermo" },
-      { id: "heat", title: "Heat Transfer", introduction: "Heat moves from hot objects to cold ones through three mechanisms — conduction (through direct contact), convection (through fluid movement), and radiation (through electromagnetic waves). Understanding heat transfer explains why metals feel cold, why the sun warms the Earth, and how insulation works.", keyConcepts: ["Conduction transfers heat through direct particle contact — metals conduct well", "Convection transfers heat through fluid movement — hot fluid rises, cold fluid sinks", "Radiation transfers heat through electromagnetic waves — requires no medium", "Rate of heat transfer depends on temperature difference, material, and surface area", "Good conductors of electricity are usually good conductors of heat"], workedExample: { problem: "Find the heat needed to raise 2kg of water from 20°C to 100°C. (specific heat of water = 4200 J/kg°C)", steps: ["Use formula: Q = mcΔT", "Identify values: m=2kg, c=4200 J/kg°C, ΔT=80°C", "Calculate: Q = 2 × 4200 × 80", "Result: Q = 672,000 J = 672 kJ"], answer: "Heat required = 672 kJ" }, equations: "Q = mcΔT  |  P = kA(ΔT/d)  |  P = σAT⁴", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "thermo" },
-      { id: "entropy", title: "Entropy", introduction: "Entropy is a measure of disorder in a system. The second law of thermodynamics states that entropy always increases in a closed system — things naturally become more disordered over time. This is why heat flows from hot to cold, why a broken egg cannot reassemble itself, and why useful energy is always lost as waste heat.", keyConcepts: ["Entropy measures the degree of disorder or randomness in a system", "The second law: total entropy always increases in isolated systems", "Heat naturally flows from hot to cold — never the reverse spontaneously", "Energy can be converted but some is always lost as heat", "Entropy explains the direction of time — systems evolve toward greater disorder"], workedExample: { problem: "1000J of heat flows from a hot reservoir at 500K to a cold reservoir at 250K. Find the entropy change.", steps: ["Entropy change of hot reservoir: ΔS₁ = -Q/T₁ = -1000/500 = -2 J/K", "Entropy change of cold reservoir: ΔS₂ = +Q/T₂ = +1000/250 = +4 J/K", "Total entropy change: ΔStotal = -2 + 4 = +2 J/K", "Positive result confirms second law — entropy increased"], answer: "Total entropy change = +2 J/K" }, equations: "ΔS = Q/T  |  ΔS ≥ 0  |  S = k·ln(W)", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "thermo" },
-      { id: "carnot", title: "Carnot Cycle", introduction: "The Carnot cycle is the most efficient possible heat engine — a theoretical machine that converts heat into work. No real engine can exceed its efficiency. It operates between two temperatures and consists of four steps — two isothermal and two adiabatic processes. Understanding Carnot efficiency tells us the fundamental limits of any engine.", keyConcepts: ["The Carnot engine is the most efficient possible heat engine", "Efficiency depends only on the temperatures of the hot and cold reservoirs", "No real engine can exceed Carnot efficiency", "The four stages: isothermal expansion, adiabatic expansion, isothermal compression, adiabatic compression", "Higher temperature difference means greater possible efficiency"], workedExample: { problem: "A Carnot engine operates between 600K and 300K. Find its efficiency.", steps: ["Use Carnot efficiency formula: η = 1 - Tc/Th", "Substitute values: η = 1 - 300/600", "Calculate: η = 1 - 0.5 = 0.5", "Convert to percentage: efficiency = 50%"], answer: "Carnot efficiency = 50%" }, equations: "η = 1 - Tc/Th  |  W = Qh - Qc  |  Qh/Th = Qc/Tc", controls: [{ id: "temp", label: "Hot Temperature", min: 200, max: 800, val: 500, unit: " K" }], simKey: "thermo" },
-      { id: "idealgas", title: "Ideal Gas Law", introduction: "The ideal gas law combines three relationships — Boyle's Law (pressure and volume), Charles's Law (volume and temperature), and Gay-Lussac's Law (pressure and temperature) — into one powerful equation: PV = nRT. This equation predicts how a gas behaves when you change its pressure, volume, or temperature.", keyConcepts: ["PV = nRT where P=pressure, V=volume, n=moles, R=gas constant, T=temperature in Kelvin", "Boyle's Law: at constant temperature, pressure and volume are inversely proportional", "Charles's Law: at constant pressure, volume is proportional to temperature", "Temperature must always be in Kelvin for gas law calculations", "Real gases deviate from ideal behaviour at very high pressures or low temperatures"], workedExample: { problem: "2 moles of gas at 300K occupy 10L. Find the pressure. (R = 8.314 J/mol·K)", steps: ["Use ideal gas law: PV = nRT", "Rearrange for pressure: P = nRT/V", "Convert volume: 10L = 0.01 m³", "Calculate: P = 2 × 8.314 × 300 / 0.01 = 498,840 Pa"], answer: "Pressure = 498,840 Pa ≈ 4.93 atm" }, equations: "PV = nRT  |  P₁V₁/T₁ = P₂V₂/T₂  |  R = 8.314 J/mol·K", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "thermo" },
+      { id: "heat", title: "Heat Transfer", introduction: "Heat moves from hot objects to cold ones through three mechanisms — conduction (through direct contact), convection (through fluid movement), and radiation (through electromagnetic waves). Understanding heat transfer explains why metals feel cold, why the sun warms the Earth, and how insulation works.", keyConcepts: ["Conduction transfers heat through direct particle contact — metals conduct well", "Convection transfers heat through fluid movement — hot fluid rises, cold fluid sinks", "Radiation transfers heat through electromagnetic waves — requires no medium", "Rate of heat transfer depends on temperature difference, material, and surface area", "Good conductors of electricity are usually good conductors of heat"], workedExample: { problem: "Find the heat needed to raise 2kg of water from 20°C to 100°C. (specific heat of water = 4200 J/kg°C)", steps: ["Use formula: Q = mcΔT", "Identify values: m=2kg, c=4200 J/kg°C, ΔT=80°C", "Calculate: Q = 2 × 4200 × 80", "Result: Q = 672,000 J = 672 kJ"], answer: "Heat required = 672 kJ" }, equations: "Q = mcΔT  |  P = kA(ΔT/d)  |  P = σAT⁴", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "heat" },
+      { id: "entropy", title: "Entropy", introduction: "Entropy is a measure of disorder in a system. The second law of thermodynamics states that entropy always increases in a closed system — things naturally become more disordered over time. This is why heat flows from hot to cold, why a broken egg cannot reassemble itself, and why useful energy is always lost as waste heat.", keyConcepts: ["Entropy measures the degree of disorder or randomness in a system", "The second law: total entropy always increases in isolated systems", "Heat naturally flows from hot to cold — never the reverse spontaneously", "Energy can be converted but some is always lost as heat", "Entropy explains the direction of time — systems evolve toward greater disorder"], workedExample: { problem: "1000J of heat flows from a hot reservoir at 500K to a cold reservoir at 250K. Find the entropy change.", steps: ["Entropy change of hot reservoir: ΔS₁ = -Q/T₁ = -1000/500 = -2 J/K", "Entropy change of cold reservoir: ΔS₂ = +Q/T₂ = +1000/250 = +4 J/K", "Total entropy change: ΔStotal = -2 + 4 = +2 J/K", "Positive result confirms second law — entropy increased"], answer: "Total entropy change = +2 J/K" }, equations: "ΔS = Q/T  |  ΔS ≥ 0  |  S = k·ln(W)", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "entropy" },
+      { id: "carnot", title: "Carnot Cycle", introduction: "The Carnot cycle is the most efficient possible heat engine — a theoretical machine that converts heat into work. No real engine can exceed its efficiency. It operates between two temperatures and consists of four steps — two isothermal and two adiabatic processes. Understanding Carnot efficiency tells us the fundamental limits of any engine.", keyConcepts: ["The Carnot engine is the most efficient possible heat engine", "Efficiency depends only on the temperatures of the hot and cold reservoirs", "No real engine can exceed Carnot efficiency", "The four stages: isothermal expansion, adiabatic expansion, isothermal compression, adiabatic compression", "Higher temperature difference means greater possible efficiency"], workedExample: { problem: "A Carnot engine operates between 600K and 300K. Find its efficiency.", steps: ["Use Carnot efficiency formula: η = 1 - Tc/Th", "Substitute values: η = 1 - 300/600", "Calculate: η = 1 - 0.5 = 0.5", "Convert to percentage: efficiency = 50%"], answer: "Carnot efficiency = 50%" }, equations: "η = 1 - Tc/Th  |  W = Qh - Qc  |  Qh/Th = Qc/Tc", controls: [{ id: "temp", label: "Hot Temperature", min: 200, max: 800, val: 500, unit: " K" }], simKey: "carnot" },
+      { id: "idealgas", title: "Ideal Gas Law", introduction: "The ideal gas law combines three relationships — Boyle's Law (pressure and volume), Charles's Law (volume and temperature), and Gay-Lussac's Law (pressure and temperature) — into one powerful equation: PV = nRT. This equation predicts how a gas behaves when you change its pressure, volume, or temperature.", keyConcepts: ["PV = nRT where P=pressure, V=volume, n=moles, R=gas constant, T=temperature in Kelvin", "Boyle's Law: at constant temperature, pressure and volume are inversely proportional", "Charles's Law: at constant pressure, volume is proportional to temperature", "Temperature must always be in Kelvin for gas law calculations", "Real gases deviate from ideal behaviour at very high pressures or low temperatures"], workedExample: { problem: "2 moles of gas at 300K occupy 10L. Find the pressure. (R = 8.314 J/mol·K)", steps: ["Use ideal gas law: PV = nRT", "Rearrange for pressure: P = nRT/V", "Convert volume: 10L = 0.01 m³", "Calculate: P = 2 × 8.314 × 300 / 0.01 = 498,840 Pa"], answer: "Pressure = 498,840 Pa ≈ 4.93 atm" }, equations: "PV = nRT  |  P₁V₁/T₁ = P₂V₂/T₂  |  R = 8.314 J/mol·K", controls: [{ id: "temp", label: "Temperature", min: 50, max: 500, val: 200, unit: " K" }], simKey: "idealgas" },
     ],
   },
   em: {
@@ -182,10 +182,10 @@ const topics = {
     badge: "EM Champion",
     lessons: [
       { id: "efields", title: "Electric Fields", introduction: "An electric field is a region where a charged particle experiences a force. The field points in the direction a positive charge would move. Fields are created by charged objects and extend outward in all directions. Understanding electric fields explains how lightning works, how capacitors store energy, and how your phone's touchscreen detects your finger.", keyConcepts: ["Electric fields point from positive to negative charges", "Field strength is measured in Newtons per Coulomb (N/C)", "Like charges repel, unlike charges attract", "Electric field lines never cross each other", "The closer together the field lines, the stronger the field"], workedExample: { problem: "Find the electric force on a 2μC charge in a field of 5000 N/C.", steps: ["Use formula: F = qE", "Identify values: q = 2×10⁻⁶ C, E = 5000 N/C", "Calculate: F = 2×10⁻⁶ × 5000", "Result: F = 0.01 N = 10 mN"], answer: "Electric force = 0.01 N" }, equations: "F = kq₁q₂/r²  |  E = F/q  |  E = kq/r²", controls: [{ id: "charge", label: "Charge", min: -3, max: 3, val: 2, unit: "e" }], simKey: "em" },
-      { id: "bfields", title: "Magnetic Fields", introduction: "Magnetic fields are created by moving charges and permanent magnets. They exert forces on other moving charges. The Earth has a magnetic field that protects us from solar wind. MRI machines, electric motors, and speakers all rely on magnetic fields. The magnetic force always acts perpendicular to the velocity of a moving charge.", keyConcepts: ["Magnetic fields are created by moving charges and permanent magnets", "Magnetic force acts perpendicular to both field and velocity", "Field lines form closed loops from North to South poles outside the magnet", "A current-carrying wire creates a circular magnetic field around it", "The right-hand rule determines the direction of magnetic force"], workedExample: { problem: "A proton moves at 10⁶ m/s perpendicular to a 0.5T magnetic field. Find the magnetic force.", steps: ["Use formula: F = qvB", "Identify values: q = 1.6×10⁻¹⁹ C, v = 10⁶ m/s, B = 0.5T", "Calculate: F = 1.6×10⁻¹⁹ × 10⁶ × 0.5", "Result: F = 8×10⁻¹⁴ N"], answer: "Magnetic force = 8×10⁻¹⁴ N" }, equations: "F = qvB  |  F = BIl  |  B = μ₀I/2πr", controls: [{ id: "charge", label: "Charge", min: -3, max: 3, val: 2, unit: "e" }], simKey: "em" },
-      { id: "faraday", title: "Faraday's Law", introduction: "Faraday's Law states that a changing magnetic field induces an electric current. This is the principle behind every electrical generator — move a magnet near a coil of wire and electricity flows. Without Faraday's Law there would be no power stations, no transformers, and no wireless charging.", keyConcepts: ["A changing magnetic flux induces an EMF (voltage) in a conductor", "The faster the magnetic field changes, the greater the induced EMF", "Lenz's Law: the induced current opposes the change that caused it", "Generators convert mechanical energy to electrical energy using this principle", "Transformers use electromagnetic induction to change voltage levels"], workedExample: { problem: "A coil of 100 turns experiences a flux change of 0.5 Wb in 0.2 seconds. Find the induced EMF.", steps: ["Use Faraday's Law: EMF = -N × ΔΦ/Δt", "Identify values: N=100 turns, ΔΦ=0.5Wb, Δt=0.2s", "Calculate: EMF = 100 × 0.5/0.2", "Result: EMF = 250 V"], answer: "Induced EMF = 250 V" }, equations: "EMF = -NΔΦ/Δt  |  Φ = BA·cosθ  |  V₁/V₂ = N₁/N₂", controls: [{ id: "charge", label: "Field Strength", min: -3, max: 3, val: 2, unit: "e" }], simKey: "em" },
-      { id: "circuits", title: "AC/DC Circuits", introduction: "Electric circuits are pathways for current to flow. DC (Direct Current) flows in one direction — like a battery. AC (Alternating Current) reverses direction many times per second — like the electricity in your home. Understanding circuits is the foundation of all electronics, from simple light switches to computer processors.", keyConcepts: ["Voltage drives current through a circuit — measured in Volts", "Resistance opposes current flow — measured in Ohms", "Ohm's Law: V = IR relates voltage, current and resistance", "In series circuits, current is the same throughout", "In parallel circuits, voltage is the same across each branch"], workedExample: { problem: "Three resistors of 2Ω, 3Ω, and 5Ω are connected in series to a 10V battery. Find the current.", steps: ["Total resistance in series: R = R₁ + R₂ + R₃ = 2 + 3 + 5 = 10Ω", "Apply Ohm's Law: I = V/R", "Calculate: I = 10/10 = 1A"], answer: "Current = 1 A" }, equations: "V = IR  |  P = IV  |  R_series = R₁+R₂+R₃", controls: [{ id: "charge", label: "Voltage", min: -3, max: 3, val: 2, unit: "e" }], simKey: "em" },
-      { id: "maxwell", title: "Maxwell's Equations", introduction: "Maxwell's four equations are the complete description of all electromagnetic phenomena. They unify electricity and magnetism into one theory and predict the existence of electromagnetic waves — including light. Einstein called Maxwell's equations the most important discovery in physics since Newton.", keyConcepts: ["Maxwell unified electricity and magnetism into one theory", "His equations predict that changing electric fields create magnetic fields and vice versa", "This mutual creation of fields allows electromagnetic waves to propagate through space", "The speed of these waves is the speed of light — revealing that light is an EM wave", "Maxwell's equations underpin all of modern telecommunications"], workedExample: { problem: "An electromagnetic wave in vacuum has frequency 6×10¹⁴ Hz. Find its wavelength.", steps: ["Use wave equation: c = fλ where c = 3×10⁸ m/s", "Rearrange: λ = c/f", "Calculate: λ = 3×10⁸ / 6×10¹⁴", "Result: λ = 5×10⁻⁷ m = 500nm (visible green light)"], answer: "Wavelength = 500 nm (green light)" }, equations: "∇·E = ρ/ε₀  |  ∇×B = μ₀J  |  c = 1/√(μ₀ε₀)", controls: [{ id: "charge", label: "Charge", min: -3, max: 3, val: 2, unit: "e" }], simKey: "em" },
+      { id: "bfields", title: "Magnetic Fields", introduction: "Magnetic fields are created by moving charges and permanent magnets. They exert forces on other moving charges. The Earth has a magnetic field that protects us from solar wind. MRI machines, electric motors, and speakers all rely on magnetic fields. The magnetic force always acts perpendicular to the velocity of a moving charge.", keyConcepts: ["Magnetic fields are created by moving charges and permanent magnets", "Magnetic force acts perpendicular to both field and velocity", "Field lines form closed loops from North to South poles outside the magnet", "A current-carrying wire creates a circular magnetic field around it", "The right-hand rule determines the direction of magnetic force"], workedExample: { problem: "A proton moves at 10⁶ m/s perpendicular to a 0.5T magnetic field. Find the magnetic force.", steps: ["Use formula: F = qvB", "Identify values: q = 1.6×10⁻¹⁹ C, v = 10⁶ m/s, B = 0.5T", "Calculate: F = 1.6×10⁻¹⁹ × 10⁶ × 0.5", "Result: F = 8×10⁻¹⁴ N"], answer: "Magnetic force = 8×10⁻¹⁴ N" }, equations: "F = qvB  |  F = BIl  |  B = μ₀I/2πr", controls: [{ id: "charge", label: "Charge", min: -3, max: 3, val: 2, unit: "e" }], simKey: "bfield" },
+      { id: "faraday", title: "Faraday's Law", introduction: "Faraday's Law states that a changing magnetic field induces an electric current. This is the principle behind every electrical generator — move a magnet near a coil of wire and electricity flows. Without Faraday's Law there would be no power stations, no transformers, and no wireless charging.", keyConcepts: ["A changing magnetic flux induces an EMF (voltage) in a conductor", "The faster the magnetic field changes, the greater the induced EMF", "Lenz's Law: the induced current opposes the change that caused it", "Generators convert mechanical energy to electrical energy using this principle", "Transformers use electromagnetic induction to change voltage levels"], workedExample: { problem: "A coil of 100 turns experiences a flux change of 0.5 Wb in 0.2 seconds. Find the induced EMF.", steps: ["Use Faraday's Law: EMF = -N × ΔΦ/Δt", "Identify values: N=100 turns, ΔΦ=0.5Wb, Δt=0.2s", "Calculate: EMF = 100 × 0.5/0.2", "Result: EMF = 250 V"], answer: "Induced EMF = 250 V" }, equations: "EMF = -NΔΦ/Δt  |  Φ = BA·cosθ  |  V₁/V₂ = N₁/N₂", controls: [{ id: "charge", label: "Field Strength", min: -3, max: 3, val: 2, unit: "e" }], simKey: "faraday" },
+      { id: "circuits", title: "AC/DC Circuits", introduction: "Electric circuits are pathways for current to flow. DC (Direct Current) flows in one direction — like a battery. AC (Alternating Current) reverses direction many times per second — like the electricity in your home. Understanding circuits is the foundation of all electronics, from simple light switches to computer processors.", keyConcepts: ["Voltage drives current through a circuit — measured in Volts", "Resistance opposes current flow — measured in Ohms", "Ohm's Law: V = IR relates voltage, current and resistance", "In series circuits, current is the same throughout", "In parallel circuits, voltage is the same across each branch"], workedExample: { problem: "Three resistors of 2Ω, 3Ω, and 5Ω are connected in series to a 10V battery. Find the current.", steps: ["Total resistance in series: R = R₁ + R₂ + R₃ = 2 + 3 + 5 = 10Ω", "Apply Ohm's Law: I = V/R", "Calculate: I = 10/10 = 1A"], answer: "Current = 1 A" }, equations: "V = IR  |  P = IV  |  R_series = R₁+R₂+R₃", controls: [{ id: "charge", label: "Voltage", min: -3, max: 3, val: 2, unit: "e" }], simKey: "circuit" },
+      { id: "maxwell", title: "Maxwell's Equations", introduction: "Maxwell's four equations are the complete description of all electromagnetic phenomena. They unify electricity and magnetism into one theory and predict the existence of electromagnetic waves — including light. Einstein called Maxwell's equations the most important discovery in physics since Newton.", keyConcepts: ["Maxwell unified electricity and magnetism into one theory", "His equations predict that changing electric fields create magnetic fields and vice versa", "This mutual creation of fields allows electromagnetic waves to propagate through space", "The speed of these waves is the speed of light — revealing that light is an EM wave", "Maxwell's equations underpin all of modern telecommunications"], workedExample: { problem: "An electromagnetic wave in vacuum has frequency 6×10¹⁴ Hz. Find its wavelength.", steps: ["Use wave equation: c = fλ where c = 3×10⁸ m/s", "Rearrange: λ = c/f", "Calculate: λ = 3×10⁸ / 6×10¹⁴", "Result: λ = 5×10⁻⁷ m = 500nm (visible green light)"], answer: "Wavelength = 500 nm (green light)" }, equations: "∇·E = ρ/ε₀  |  ∇×B = μ₀J  |  c = 1/√(μ₀ε₀)", controls: [{ id: "charge", label: "Charge", min: -3, max: 3, val: 2, unit: "e" }], simKey: "maxwell" },
     ],
   },
   quantum: {
@@ -668,7 +668,19 @@ function SimCanvas({ simKey, controls }) {
       else if (simKey === "momentum") drawMomentum(ctx, W, H, t, controls);
       else if (simKey === "waves") drawWaves(ctx, W, H, t, controls);
       else if (simKey === "thermo") drawThermo(ctx, W, H, t, canvas, particlesRef, controls);
+      else if (simKey === "heat") drawHeat(ctx, W, H, t, controls);
+      else if (simKey === "entropy") drawEntropy(ctx, W, H, t, controls);
+      else if (simKey === "carnot") drawCarnot(ctx, W, H, t, controls);
+      else if (simKey === "idealgas") drawIdealgas(ctx, W, H, t, controls);
+      else if (simKey === "heat") drawHeat(ctx, W, H, t, controls);
+      else if (simKey === "entropy") drawEntropy(ctx, W, H, t, controls);
+      else if (simKey === "carnot") drawCarnot(ctx, W, H, t, controls);
+      else if (simKey === "idealgas") drawIdealgas(ctx, W, H, t, controls);
       else if (simKey === "em") drawEM(ctx, W, H, t, controls);
+      else if (simKey === "bfield") drawBfield(ctx, W, H, t, controls);
+      else if (simKey === "faraday") drawFaraday(ctx, W, H, t, controls);
+      else if (simKey === "circuit") drawCircuit(ctx, W, H, t, controls);
+      else if (simKey === "maxwell") drawMaxwell(ctx, W, H, t, controls);
       else if (simKey === "quantum") drawQuantum(ctx, W, H, t, controls);
       else if (simKey === "relativity") drawRelativity(ctx, W, H, t, controls);
       else if (simKey === "nuclear") drawNuclear(ctx, W, H, t, controls);
@@ -744,27 +756,64 @@ function drawNewton(ctx, W, H, t, controls) {
   const friction = Math.min(force * 0.4, 15);
   const netForce = Math.max(0, force - friction);
   const acc = netForce / mass;
-  const cx = W / 2, cy = H / 2;
-  const boxX = ((t * acc * 15) % (W - 80)) + 40;
-  ctx.fillStyle = "rgba(255,255,255,0.1)"; ctx.fillRect(40, cy + 30, W - 80, 4);
+  const ground = H - 60;
+  const boxW = 50 + mass * 3, boxH = 40 + mass * 2;
+  const boxX = 60 + ((t * acc * 20) % (W - boxW - 80));
+  const boxY = ground - boxH;
+  ctx.fillStyle = "rgba(255,255,255,0.06)";
+  ctx.fillRect(40, ground, W - 80, 4);
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 1;
+  for (let x = 40; x < W - 40; x += 20) {
+    ctx.beginPath(); ctx.moveTo(x, ground + 4); ctx.lineTo(x + 10, ground + 14); ctx.stroke();
+  }
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.fillRect(boxX + 4, ground, boxW, 6);
+  const grad = ctx.createLinearGradient(boxX, boxY, boxX, ground);
+  grad.addColorStop(0, "#4a9de8");
+  grad.addColorStop(1, "#185FA5");
+  ctx.fillStyle = grad;
+  ctx.fillRect(boxX, boxY, boxW, boxH);
   ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1;
-  ctx.strokeRect(40, cy + 30, W - 80, 4);
-  const bw = 60, bh = 40;
-  ctx.fillStyle = "#378ADD"; ctx.fillRect(boxX - bw/2, cy - bh/2, bw, bh);
-  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1;
-  ctx.strokeRect(boxX - bw/2, cy - bh/2, bw, bh);
-  ctx.fillStyle = "#fff"; ctx.font = "12px monospace"; ctx.textAlign = "center";
-  ctx.fillText(`${mass}kg`, boxX, cy + 5);
-  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(boxX + bw/2, cy);
-  ctx.lineTo(boxX + bw/2 + force * 2, cy); ctx.stroke();
-  ctx.fillStyle = "#E85D24"; ctx.fillText(`F=${force}N`, boxX + bw/2 + force + 10, cy - 8);
-  ctx.strokeStyle = "#7F77DD"; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(boxX - bw/2, cy);
-  ctx.lineTo(boxX - bw/2 - friction * 2, cy); ctx.stroke();
-  ctx.fillStyle = "#7F77DD"; ctx.fillText(`f=${friction.toFixed(0)}N`, boxX - bw/2 - friction - 10, cy - 8);
-  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
-  ctx.fillText(`a = ${acc.toFixed(2)} m/s²  |  F_net = ${netForce.toFixed(0)}N`, W/2, H - 10);
+  ctx.strokeRect(boxX, boxY, boxW, boxH);
+  ctx.fillStyle = "#fff"; ctx.font = "bold 13px monospace"; ctx.textAlign = "center";
+  ctx.fillText(mass + "kg", boxX + boxW/2, boxY + boxH/2 + 5);
+  const cx = boxX + boxW/2, cy = boxY + boxH/2;
+  if (force > 0) {
+    const arrowLen = force * 3;
+    ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(boxX + boxW, cy); ctx.lineTo(boxX + boxW + arrowLen, cy); ctx.stroke();
+    ctx.fillStyle = "#E85D24";
+    ctx.beginPath(); ctx.moveTo(boxX + boxW + arrowLen + 10, cy);
+    ctx.lineTo(boxX + boxW + arrowLen, cy - 6); ctx.lineTo(boxX + boxW + arrowLen, cy + 6);
+    ctx.fill();
+    ctx.font = "11px monospace"; ctx.textAlign = "center";
+    ctx.fillText("F=" + force + "N", boxX + boxW + arrowLen/2, cy - 10);
+  }
+  if (friction > 0 && netForce > 0) {
+    const fLen = friction * 3;
+    ctx.strokeStyle = "#7F77DD"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(boxX, cy); ctx.lineTo(boxX - fLen, cy); ctx.stroke();
+    ctx.fillStyle = "#7F77DD";
+    ctx.beginPath(); ctx.moveTo(boxX - fLen - 10, cy);
+    ctx.lineTo(boxX - fLen, cy - 6); ctx.lineTo(boxX - fLen, cy + 6);
+    ctx.fill();
+    ctx.font = "11px monospace"; ctx.textAlign = "center";
+    ctx.fillText("f=" + friction.toFixed(0) + "N", boxX - fLen/2, cy - 10);
+  }
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx, ground); ctx.lineTo(cx, ground + 30); ctx.stroke();
+  ctx.fillStyle = "#1D9E75";
+  ctx.beginPath(); ctx.moveTo(cx, ground + 38); ctx.lineTo(cx - 5, ground + 28); ctx.lineTo(cx + 5, ground + 28); ctx.fill();
+  ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("W=" + (mass * 9.8).toFixed(0) + "N", cx + 35, ground + 30);
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx, boxY); ctx.lineTo(cx, boxY - 30); ctx.stroke();
+  ctx.fillStyle = "#F2C94C";
+  ctx.beginPath(); ctx.moveTo(cx, boxY - 38); ctx.lineTo(cx - 5, boxY - 28); ctx.lineTo(cx + 5, boxY - 28); ctx.fill();
+  ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("N=" + (mass * 9.8).toFixed(0) + "N", cx + 35, boxY - 25);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("F=" + force + "N  f=" + friction.toFixed(0) + "N  Fnet=" + netForce.toFixed(0) + "N  a=" + acc.toFixed(2) + "m/s2", W/2, H - 10);
   ctx.textAlign = "left";
 }
 
@@ -985,29 +1034,190 @@ function drawPolarisation(ctx, W, H, t, controls) {
 }
 
 function drawThermo(ctx, W, H, t, canvas, particlesRef, controls) {
-  const temp = controls.temp || 200, N = 28;
+  const temp = controls.temp || 200, N = 20;
   if (!particlesRef.current) {
-    particlesRef.current = Array.from({ length: N }, () => ({
-      x: 44 + Math.random() * (W - 88), y: 34 + Math.random() * (H - 68),
-      vx: (Math.random() - 0.5) * 2, vy: (Math.random() - 0.5) * 2,
-    }));
+    particlesRef.current = Array.from({ length: N }, function() {
+      return {
+        x: 44 + Math.random() * (W * 0.52 - 88),
+        y: 34 + Math.random() * (H - 68),
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+      };
+    });
   }
   const spd = temp / 150;
-  particlesRef.current.forEach((p) => {
+  particlesRef.current.forEach(function(p) {
     p.x += p.vx * spd; p.y += p.vy * spd;
-    if (p.x < 44 || p.x > W - 44) p.vx *= -1;
+    if (p.x < 44 || p.x > W * 0.52 - 44) p.vx *= -1;
     if (p.y < 34 || p.y > H - 34) p.vy *= -1;
   });
-  ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1.5;
-  ctx.strokeRect(40, 30, W - 80, H - 60);
+  ctx.strokeStyle = "rgba(255,255,255,0.25)"; ctx.lineWidth = 2;
+  ctx.strokeRect(40, 30, W * 0.52 - 80, H - 60);
   const r = Math.min(255, Math.floor(temp * 0.5)), b = Math.max(0, 200 - Math.floor(temp * 0.4));
-  particlesRef.current.forEach((p) => {
+  particlesRef.current.forEach(function(p) {
     const g2 = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 7);
-    g2.addColorStop(0, `rgba(${r},120,${b},0.9)`); g2.addColorStop(1, `rgba(${r},60,${b},0)`);
-    ctx.beginPath(); ctx.arc(p.x, p.y, 7, 0, Math.PI * 2); ctx.fillStyle = g2; ctx.fill();
+    g2.addColorStop(0, "rgba(" + r + ",120," + b + ",0.9)");
+    g2.addColorStop(1, "rgba(" + r + ",60," + b + ",0)");
+    ctx.beginPath(); ctx.arc(p.x, p.y, 7, 0, Math.PI * 2);
+    ctx.fillStyle = g2; ctx.fill();
   });
-  ctx.font = "11px monospace"; ctx.fillStyle = "rgba(255,255,255,0.45)"; ctx.textAlign = "center";
-  ctx.fillText(`T = ${temp}K`, W / 2, H - 8); ctx.textAlign = "left";
+  const gx = W * 0.58, gy = 30, gw = W * 0.36, gh = H - 70;
+  ctx.strokeStyle = "rgba(255,255,255,0.15)"; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    ctx.beginPath(); ctx.moveTo(gx, gy + i * gh/4); ctx.lineTo(gx + gw, gy + i * gh/4); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx + i * gw/4, gy); ctx.lineTo(gx + i * gw/4, gy + gh); ctx.stroke();
+  }
+  ctx.strokeStyle = "rgba(255,255,255,0.4)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(gx, gy); ctx.lineTo(gx, gy + gh); ctx.lineTo(gx + gw, gy + gh); ctx.stroke();
+  ctx.beginPath(); ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2;
+  for (let i = 0; i <= 50; i++) {
+    const vv = 0.2 + (i/50) * 0.8;
+    const pp = (temp / 200) / vv;
+    const px2 = gx + vv * gw;
+    const py2 = gy + gh - Math.min(pp * gh * 0.6, gh - 5);
+    i === 0 ? ctx.moveTo(px2, py2) : ctx.lineTo(px2, py2);
+  }
+  ctx.stroke();
+  const stateV = 0.5;
+  const stateP = (temp / 200) / stateV;
+  const statePx = gx + stateV * gw;
+  const statePy = gy + gh - Math.min(stateP * gh * 0.6, gh - 5);
+  ctx.beginPath(); ctx.arc(statePx, statePy, 6, 0, Math.PI * 2);
+  ctx.fillStyle = "#E85D24"; ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("PV Diagram", gx + gw/2, gy - 8);
+  ctx.fillText("V ->", gx + gw + 10, gy + gh);
+  ctx.textAlign = "right"; ctx.fillText("P", gx - 4, gy + 8);
+  ctx.fillStyle = "#E85D24"; ctx.textAlign = "left"; ctx.fillText("T=" + temp + "K", gx + 5, gy + 15);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("T=" + temp + "K  |  PV=nRT  |  Higher T = faster particles + higher pressure", W * 0.28, H - 10);
+  ctx.textAlign = "left";
+}
+
+function drawHeat(ctx, W, H, t, controls) {
+  const temp = controls.temp || 200;
+  const W3 = (W - 80) / 3;
+  const sections = [
+    { x: 40, label: "Hot", temp: temp, r: 232, g: 93, b: 36 },
+    { x: 40 + W3, label: "Medium", temp: temp * 0.6, r: 242, g: 201, b: 76 },
+    { x: 40 + W3*2, label: "Cold", temp: temp * 0.2, r: 59, g: 139, b: 212 },
+  ];
+  sections.forEach(function(s) {
+    const grad = ctx.createLinearGradient(s.x, 0, s.x + W3, 0);
+    grad.addColorStop(0, "rgba(" + s.r + "," + s.g + "," + s.b + ",0.7)");
+    grad.addColorStop(1, "rgba(" + s.r + "," + s.g + "," + s.b + ",0.1)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(s.x, 40, W3, H - 80);
+    ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 1;
+    ctx.strokeRect(s.x, 40, W3, H - 80);
+    ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.font = "13px monospace"; ctx.textAlign = "center";
+    ctx.fillText(s.label, s.x + W3/2, H/2);
+    ctx.fillText(s.temp.toFixed(0) + "K", s.x + W3/2, H/2 + 20);
+  });
+  const arrowPhase = (t * 0.5) % 1;
+  const arrowX = 40 + W3 + arrowPhase * W3;
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(arrowX - 10, H/2 - 40); ctx.lineTo(arrowX + 10, H/2 - 40); ctx.stroke();
+  ctx.fillStyle = "#E85D24";
+  ctx.beginPath(); ctx.moveTo(arrowX + 18, H/2 - 40); ctx.lineTo(arrowX + 8, H/2 - 46); ctx.lineTo(arrowX + 8, H/2 - 34); ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Heat flows hot to cold  |  Q = mcDeltaT", W/2, H - 10);
+  ctx.textAlign = "left";
+}
+
+function drawEntropy(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1;
+  ctx.strokeRect(40, 40, cx - 60, H - 80);
+  ctx.strokeRect(cx + 20, 40, cx - 60, H - 80);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Low Entropy", (40 + cx - 60) / 2, 35);
+  ctx.fillText("High Entropy", cx + 20 + (cx - 60) / 2, 35);
+  for (let row = 0; row < 4; row++) {
+    for (let col = 0; col < 4; col++) {
+      const ox = 70 + col * 35, oy = 70 + row * 35;
+      ctx.beginPath(); ctx.arc(ox, oy, 8, 0, Math.PI * 2);
+      ctx.fillStyle = "#378ADD"; ctx.fill();
+    }
+  }
+  for (let i = 0; i < 16; i++) {
+    const ox = cx + 40 + Math.sin(i * 2.3 + t * 0.2) * 80;
+    const oy = cy + Math.cos(i * 1.7 + t * 0.15) * 60;
+    ctx.beginPath(); ctx.arc(ox, oy, 8, 0, Math.PI * 2);
+    ctx.fillStyle = i % 2 === 0 ? "#378ADD" : "#E85D24"; ctx.fill();
+  }
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx - 50, cy); ctx.lineTo(cx + 10, cy); ctx.stroke();
+  ctx.fillStyle = "#1D9E75";
+  ctx.beginPath(); ctx.moveTo(cx + 18, cy); ctx.lineTo(cx + 8, cy - 5); ctx.lineTo(cx + 8, cy + 5); ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Entropy always increases  |  DeltaS >= 0", W/2, H - 10);
+  ctx.textAlign = "left";
+}
+
+function drawCarnot(ctx, W, H, t, controls) {
+  const hotTemp = controls.temp || 500, coldTemp = 300;
+  const efficiency = 1 - coldTemp / hotTemp;
+  const ox = 80, oy = H - 50, gw = W - 160, gh = H - 90;
+  ctx.strokeStyle = "rgba(255,255,255,0.08)"; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    ctx.beginPath(); ctx.moveTo(ox + i * gw/4, oy - gh); ctx.lineTo(ox + i * gw/4, oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox, oy - i * gh/4); ctx.lineTo(ox + gw, oy - i * gh/4); ctx.stroke();
+  }
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(ox, oy - gh); ctx.lineTo(ox, oy); ctx.lineTo(ox + gw, oy); ctx.stroke();
+  const x1 = ox + gw * 0.15, x2 = ox + gw * 0.75;
+  const y1 = oy - gh * 0.75, y2 = oy - gh * 0.25;
+  ctx.fillStyle = "rgba(242,201,76,0.08)"; ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
+  ctx.beginPath(); ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2.5; ctx.moveTo(x1, y1); ctx.lineTo(x2, y1); ctx.stroke();
+  ctx.beginPath(); ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 2.5; ctx.moveTo(x2, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  ctx.beginPath(); ctx.strokeStyle = "#378ADD"; ctx.lineWidth = 2.5; ctx.moveTo(x2, y2); ctx.lineTo(x1, y2); ctx.stroke();
+  ctx.beginPath(); ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2.5; ctx.moveTo(x1, y2); ctx.lineTo(x1, y1); ctx.stroke();
+  const cp = (t * 0.4) % 1;
+  let dotX, dotY;
+  if (cp < 0.25) { dotX = x1 + (x2-x1)*(cp/0.25); dotY = y1; }
+  else if (cp < 0.5) { dotX = x2; dotY = y1 + (y2-y1)*((cp-0.25)/0.25); }
+  else if (cp < 0.75) { dotX = x2 - (x2-x1)*((cp-0.5)/0.25); dotY = y2; }
+  else { dotX = x1; dotY = y2 - (y2-y1)*((cp-0.75)/0.25); }
+  ctx.beginPath(); ctx.arc(dotX, dotY, 7, 0, Math.PI * 2); ctx.fillStyle = "#fff"; ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Carnot efficiency = " + (efficiency * 100).toFixed(1) + "%  |  eta = 1 - Tc/Th", W/2, H - 10);
+  ctx.textAlign = "left";
+}
+
+function drawIdealgas(ctx, W, H, t, controls) {
+  const temp = controls.temp || 200;
+  const gw = W/3 - 40, gh = H - 100;
+  const graphs = [
+    { ox: 45, label: "P vs V", color: "#E85D24", inverse: true },
+    { ox: W/3 + 15, label: "P vs T", color: "#1D9E75", inverse: false },
+    { ox: 2*W/3 - 10, label: "V vs T", color: "#378ADD", inverse: false },
+  ];
+  graphs.forEach(function(g, gi) {
+    const gy = 40;
+    ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(g.ox, gy); ctx.lineTo(g.ox, gy + gh); ctx.lineTo(g.ox + gw, gy + gh); ctx.stroke();
+    ctx.beginPath(); ctx.strokeStyle = g.color; ctx.lineWidth = 2;
+    for (let i = 1; i <= 50; i++) {
+      const x = i / 50;
+      const y = g.inverse ? Math.min(1/x, 2) : x;
+      const px = g.ox + x * gw;
+      const py = gy + gh - Math.min(y * gh * 0.45, gh - 5);
+      i === 1 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    const phase = (t * 0.3 + gi * 0.3) % 1;
+    const x = 0.2 + phase * 0.6;
+    const y = g.inverse ? Math.min(1/x, 2) : x;
+    const px = g.ox + x * gw;
+    const py = gy + gh - Math.min(y * gh * 0.45, gh - 5);
+    ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fillStyle = g.color; ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+    ctx.fillText(g.label, g.ox + gw/2, gy - 8);
+  });
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("PV = nRT  |  T=" + temp + "K", W/2, H - 10);
+  ctx.textAlign = "left";
 }
 
 function drawEM(ctx, W, H, t, controls) {
@@ -1038,6 +1248,207 @@ function drawEM(ctx, W, H, t, controls) {
   ctx.fillText(q > 0 ? "+" : "−", cx, cy); ctx.textBaseline = "alphabetic";
   ctx.font = "11px monospace"; ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.textAlign = "center";
   ctx.fillText(`q = ${q}e`, W / 2, H - 8); ctx.textAlign = "left";
+}
+
+
+function drawBfield(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  const wireY = cy;
+
+  // Wire
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(60, wireY); ctx.lineTo(W - 60, wireY); ctx.stroke();
+  ctx.fillStyle = "#F2C94C"; ctx.font = "11px monospace"; ctx.textAlign = "left";
+  ctx.fillText("Current I ->", 70, wireY - 12);
+
+  // Circular field lines around wire
+  const numRings = 5;
+  for (let r = 1; r <= numRings; r++) {
+    const radius = r * 30;
+    const alpha = 1 - r * 0.18;
+    ctx.beginPath(); ctx.arc(cx, wireY, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(127,119,221," + alpha + ")"; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Animated arrow showing field direction
+    const arrowAngle = (t * 1.5 + r * 0.5) % (Math.PI * 2);
+    const ax = cx + radius * Math.cos(arrowAngle);
+    const ay = wireY + radius * Math.sin(arrowAngle);
+    const tangentAngle = arrowAngle + Math.PI / 2;
+    ctx.fillStyle = "rgba(127,119,221," + alpha + ")";
+    ctx.beginPath();
+    ctx.moveTo(ax + 8 * Math.cos(tangentAngle), ay + 8 * Math.sin(tangentAngle));
+    ctx.lineTo(ax - 6 * Math.cos(tangentAngle - 0.5), ay - 6 * Math.sin(tangentAngle - 0.5));
+    ctx.lineTo(ax - 6 * Math.cos(tangentAngle + 0.5), ay - 6 * Math.sin(tangentAngle + 0.5));
+    ctx.fill();
+  }
+
+  // Right hand rule illustration
+  ctx.fillStyle = "rgba(255,255,255,0.3)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Right-hand rule: thumb = current, fingers = B field", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawFaraday(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  const magnetX = 80 + ((t * 40) % (W * 0.5));
+  const coilX = W * 0.65;
+
+  // Magnet
+  const mW = 50, mH = 80;
+  ctx.fillStyle = "#E85D24";
+  ctx.fillRect(magnetX - mW/2, cy - mH/2, mW/2, mH);
+  ctx.fillStyle = "#378ADD";
+  ctx.fillRect(magnetX, cy - mH/2, mW/2, mH);
+  ctx.fillStyle = "#fff"; ctx.font = "bold 14px monospace"; ctx.textAlign = "center";
+  ctx.fillText("N", magnetX - mW/4, cy + 5);
+  ctx.fillText("S", magnetX + mW/4, cy + 5);
+
+  // Field lines from magnet
+  for (let i = -2; i <= 2; i++) {
+    const lineY = cy + i * 15;
+    const lineAlpha = 1 - Math.abs(i) * 0.2;
+    ctx.beginPath();
+    ctx.moveTo(magnetX + mW/2, lineY);
+    ctx.bezierCurveTo(
+      magnetX + mW, lineY,
+      coilX - 40, lineY,
+      coilX - 20, lineY
+    );
+    ctx.strokeStyle = "rgba(242,201,76," + lineAlpha + ")";
+    ctx.lineWidth = 1.5; ctx.stroke();
+  }
+
+  // Coil
+  ctx.strokeStyle = "#7F77DD"; ctx.lineWidth = 3;
+  for (let i = 0; i < 5; i++) {
+    const x = coilX + i * 12;
+    ctx.beginPath();
+    ctx.ellipse(x, cy, 8, 35, 0, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Induced current indicator
+  const emf = Math.sin(t * 2) * 30;
+  const barH = Math.abs(emf);
+  ctx.fillStyle = emf > 0 ? "#1D9E75" : "#E85D24";
+  ctx.fillRect(W - 50, cy - barH, 20, barH * 2);
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("EMF", W - 40, cy + 50);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText("Moving magnet -> changing flux -> induced EMF", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawCircuit(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  const voltage = 12, resistance = 6;
+  const current = voltage / resistance;
+
+  const nodes = [
+    { x: cx - 160, y: cy - 80 },
+    { x: cx + 160, y: cy - 80 },
+    { x: cx + 160, y: cy + 80 },
+    { x: cx - 160, y: cy + 80 },
+  ];
+
+  // Wires
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(nodes[0].x, nodes[0].y);
+  ctx.lineTo(nodes[1].x, nodes[1].y);
+  ctx.lineTo(nodes[2].x, nodes[2].y);
+  ctx.lineTo(nodes[3].x, nodes[3].y);
+  ctx.lineTo(nodes[0].x, nodes[0].y);
+  ctx.stroke();
+
+  // Battery symbol
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(nodes[3].x - 15, cy - 15); ctx.lineTo(nodes[3].x + 15, cy - 15); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(nodes[3].x - 8, cy); ctx.lineTo(nodes[3].x + 8, cy); ctx.stroke();
+  ctx.fillStyle = "#E85D24"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText(voltage + "V", nodes[3].x - 28, cy);
+
+  // Resistor symbol (zigzag)
+  const ry = nodes[0].y;
+  const rx1 = nodes[0].x + 30, rx2 = nodes[1].x - 30;
+  ctx.strokeStyle = "#7F77DD"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(rx1, ry);
+  for (let i = 0; i < 8; i++) {
+    const x = rx1 + (i / 8) * (rx2 - rx1);
+    const y = ry + (i % 2 === 0 ? -10 : 10);
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(rx2, ry); ctx.stroke();
+  ctx.fillStyle = "#7F77DD"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText(resistance + " ohm", cx, ry - 18);
+
+  // Electrons flowing
+  const electronCount = 8;
+  for (let i = 0; i < electronCount; i++) {
+    const phase = ((t * current * 0.3) + i / electronCount) % 1;
+    let ex, ey;
+    if (phase < 0.25) { ex = nodes[0].x + (nodes[1].x - nodes[0].x) * (phase / 0.25); ey = nodes[0].y; }
+    else if (phase < 0.5) { ex = nodes[1].x; ey = nodes[1].y + (nodes[2].y - nodes[1].y) * ((phase - 0.25) / 0.25); }
+    else if (phase < 0.75) { ex = nodes[2].x + (nodes[3].x - nodes[2].x) * ((phase - 0.5) / 0.25); ey = nodes[2].y; }
+    else { ex = nodes[3].x; ey = nodes[3].y + (nodes[0].y - nodes[3].y) * ((phase - 0.75) / 0.25); }
+    ctx.beginPath(); ctx.arc(ex, ey, 5, 0, Math.PI * 2);
+    ctx.fillStyle = "#378ADD"; ctx.fill();
+  }
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("V=" + voltage + "V  R=" + resistance + "ohm  I=" + current.toFixed(1) + "A  P=" + (voltage*current) + "W", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawMaxwell(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  const wavelength = 160;
+  const amplitude = 50;
+
+  // E field (vertical)
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let x = 40; x < W - 40; x++) {
+    const phase = (x - t * 60) / wavelength * Math.PI * 2;
+    const y = cy - amplitude * Math.sin(phase);
+    x === 40 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // B field (horizontal - shown as dots/crosses)
+  for (let x = 40; x < W - 40; x += 20) {
+    const phase = (x - t * 60) / wavelength * Math.PI * 2;
+    const bStrength = Math.sin(phase);
+    if (bStrength > 0.1) {
+      ctx.fillStyle = "rgba(55,138,221," + bStrength + ")";
+      ctx.beginPath(); ctx.arc(x, cy, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(x, cy, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = "#378ADD"; ctx.fill();
+    } else if (bStrength < -0.1) {
+      ctx.strokeStyle = "rgba(55,138,221," + Math.abs(bStrength) + ")";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(x, cy, 4, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x-3, cy-3); ctx.lineTo(x+3, cy+3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x+3, cy-3); ctx.lineTo(x-3, cy+3); ctx.stroke();
+    }
+  }
+
+  // Direction arrow
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx - 20, H - 30); ctx.lineTo(cx + 20, H - 30); ctx.stroke();
+  ctx.fillStyle = "#1D9E75";
+  ctx.beginPath(); ctx.moveTo(cx + 28, H - 30); ctx.lineTo(cx + 18, H - 35); ctx.lineTo(cx + 18, H - 25); ctx.fill();
+
+  // Labels
+  ctx.fillStyle = "#E85D24"; ctx.font = "11px monospace"; ctx.textAlign = "left";
+  ctx.fillText("E field", W - 80, cy - amplitude - 8);
+  ctx.fillStyle = "#378ADD"; ctx.fillText("B field", W - 80, cy + 20);
+  ctx.fillStyle = "#1D9E75"; ctx.fillText("c ->", cx - 10, H - 38);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("EM wave: E and B fields oscillate perpendicular to each other and to direction of travel", W/2, H - 8);
+  ctx.textAlign = "left";
 }
 
 function drawQuantum(ctx, W, H, t, controls) {

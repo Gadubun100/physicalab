@@ -1,13 +1,11 @@
-const fs = require('fs');
-
-const newSims = `
+const code = `
 function drawHeat(ctx, W, H, t, controls) {
   const temp = controls.temp || 200;
   const W3 = (W - 80) / 3;
   const sections = [
-    { x: 40, label: "Hot", t: temp, r: 232, g: 93, b: 36 },
-    { x: 40 + W3, label: "Medium", t: temp * 0.6, r: 242, g: 201, b: 76 },
-    { x: 40 + W3*2, label: "Cold", t: temp * 0.2, r: 59, g: 139, b: 212 },
+    { x: 40, label: "Hot", temp: temp, r: 232, g: 93, b: 36 },
+    { x: 40 + W3, label: "Medium", temp: temp * 0.6, r: 242, g: 201, b: 76 },
+    { x: 40 + W3*2, label: "Cold", temp: temp * 0.2, r: 59, g: 139, b: 212 },
   ];
   sections.forEach(function(s) {
     const grad = ctx.createLinearGradient(s.x, 0, s.x + W3, 0);
@@ -19,7 +17,7 @@ function drawHeat(ctx, W, H, t, controls) {
     ctx.strokeRect(s.x, 40, W3, H - 80);
     ctx.fillStyle = "rgba(255,255,255,0.7)"; ctx.font = "13px monospace"; ctx.textAlign = "center";
     ctx.fillText(s.label, s.x + W3/2, H/2);
-    ctx.fillText(s.t.toFixed(0) + "K", s.x + W3/2, H/2 + 20);
+    ctx.fillText(s.temp.toFixed(0) + "K", s.x + W3/2, H/2 + 20);
   });
   const arrowPhase = (t * 0.5) % 1;
   const arrowX = 40 + W3 + arrowPhase * W3;
@@ -100,4 +98,32 @@ function drawIdealgas(ctx, W, H, t, controls) {
     { ox: W/3 + 15, label: "P vs T", color: "#1D9E75", inverse: false },
     { ox: 2*W/3 - 10, label: "V vs T", color: "#378ADD", inverse: false },
   ];
-  graphs.
+  graphs.forEach(function(g, gi) {
+    const gy = 40;
+    ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(g.ox, gy); ctx.lineTo(g.ox, gy + gh); ctx.lineTo(g.ox + gw, gy + gh); ctx.stroke();
+    ctx.beginPath(); ctx.strokeStyle = g.color; ctx.lineWidth = 2;
+    for (let i = 1; i <= 50; i++) {
+      const x = i / 50;
+      const y = g.inverse ? Math.min(1/x, 2) : x;
+      const px = g.ox + x * gw;
+      const py = gy + gh - Math.min(y * gh * 0.45, gh - 5);
+      i === 1 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    const phase = (t * 0.3 + gi * 0.3) % 1;
+    const x = 0.2 + phase * 0.6;
+    const y = g.inverse ? Math.min(1/x, 2) : x;
+    const px = g.ox + x * gw;
+    const py = gy + gh - Math.min(y * gh * 0.45, gh - 5);
+    ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fillStyle = g.color; ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+    ctx.fillText(g.label, g.ox + gw/2, gy - 8);
+  });
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("PV = nRT  |  T=" + temp + "K", W/2, H - 10);
+  ctx.textAlign = "left";
+}
+`;
+
+module.exports = code;
