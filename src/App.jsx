@@ -203,22 +203,22 @@ const topics = {
     title: "Special Relativity", icon: "∞", color: "#D4537E",
     badge: "Relativity Expert",
     lessons: [
-      { id: "timedilation", title: "Time Dilation", introduction: "Einstein's special relativity shows that time passes at different rates for observers moving relative to each other. A clock on a fast-moving spaceship ticks more slowly than a clock at rest. This is not an illusion — the effect is real and measurable. GPS satellites must correct for time dilation to give accurate positions.", keyConcepts: ["Moving clocks tick more slowly than stationary clocks", "The effect becomes significant only at speeds close to the speed of light", "Time dilation has been confirmed by atomic clocks on aircraft and satellites", "The Lorentz factor γ = 1/√(1-v²/c²) quantifies the time dilation", "At v=0.87c, time passes twice as slowly for the moving observer"], workedExample: { problem: "A spaceship travels at 0.6c. How much time passes on the ship when Earth clocks show 10 years?", steps: ["Calculate Lorentz factor: γ = 1/√(1-v²/c²) = 1/√(1-0.36) = 1/√0.64 = 1/0.8 = 1.25", "Ship time = Earth time / γ", "Ship time = 10 / 1.25 = 8 years", "The ship's crew ages only 8 years while Earth ages 10 years"], answer: "8 years pass on the ship" }, equations: "t' = t/γ  |  γ = 1/√(1-v²/c²)  |  c = 3×10⁸ m/s", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "relativity" },
-      { id: "lengthcontraction", title: "Length Contraction", introduction: "Moving objects appear shorter in the direction of motion. A spaceship travelling at 87% the speed of light would appear half its rest length to a stationary observer. Like time dilation, this is a real physical effect — not an optical illusion. The object itself is unaffected from its own reference frame.", keyConcepts: ["Moving objects are contracted in the direction of motion", "Length contraction only occurs in the direction of travel", "The contraction factor is the same Lorentz factor γ as time dilation", "In its own reference frame, the object's length is unchanged", "Length contraction and time dilation are two aspects of the same relativistic spacetime"], workedExample: { problem: "A spaceship of rest length 100m travels at 0.8c. Find its contracted length.", steps: ["Calculate Lorentz factor: γ = 1/√(1-0.8²) = 1/√(1-0.64) = 1/√0.36 = 1/0.6 = 1.667", "Contracted length: L = L₀/γ = 100/1.667", "Calculate: L = 60m"], answer: "Contracted length = 60 m" }, equations: "L = L₀/γ  |  γ = 1/√(1-v²/c²)  |  L₀ = rest length", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "relativity" },
-      { id: "emc2", title: "E = mc²", introduction: "Einstein's most famous equation reveals that mass and energy are equivalent — mass is simply a very concentrated form of energy. A tiny amount of mass corresponds to an enormous amount of energy because c² is such a large number. This equivalence powers nuclear reactors and explains why stars shine for billions of years.", keyConcepts: ["Mass and energy are equivalent and interchangeable", "c² = 9×10¹⁶ m²/s² — a tiny mass releases enormous energy", "Nuclear reactions release energy by converting a small fraction of mass", "The sun loses 4 million tonnes of mass every second as radiated energy", "Pair production creates matter from pure energy, confirming the equivalence"], workedExample: { problem: "Find the energy equivalent of 1 gram of matter.", steps: ["Use E = mc²", "Convert mass: m = 1g = 0.001 kg", "Speed of light: c = 3×10⁸ m/s", "Calculate: E = 0.001 × (3×10⁸)² = 0.001 × 9×10¹⁶ = 9×10¹³ J"], answer: "E = 9×10¹³ J (equivalent to ~21 kilotons of TNT)" }, equations: "E = mc²  |  E = γmc²  |  KE = (γ-1)mc²", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "relativity" },
-      { id: "spacetime", title: "Spacetime Diagrams", introduction: "Spacetime diagrams (Minkowski diagrams) are graphs that show the position of objects in space and time simultaneously. The vertical axis is time, the horizontal axis is space. Light always travels at 45° on these diagrams. They make it easy to visualise simultaneity, causality, and the twin paradox.", keyConcepts: ["Spacetime combines space and time into a single four-dimensional framework", "Events are points in spacetime — defined by both position and time", "Light cones define what events can causally influence each other", "The spacetime interval is invariant — the same for all observers", "Worldlines show the path of an object through spacetime"], workedExample: { problem: "On a spacetime diagram, explain why faster-than-light travel would allow time travel.", steps: ["On a spacetime diagram, light travels at 45° — the light cone boundary", "FTL travel would appear as a line less than 45° from horizontal", "Such a line exits the future light cone", "In another reference frame, this path goes backward in time", "FTL communication would therefore allow sending information to the past"], answer: "FTL travel crosses causality boundaries, enabling closed timelike curves" }, equations: "s² = c²t² - x²  |  ds² = c²dt² - dx²", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "relativity" },
-      { id: "lorentz", title: "Lorentz Transformation", introduction: "The Lorentz transformations are the mathematical equations that convert measurements of space and time from one reference frame to another. They replace the simpler Galilean transformations of classical mechanics and correctly account for relativistic effects at high speeds.", keyConcepts: ["Lorentz transformations replace Galilean transformations at high speeds", "Space and time measurements depend on the observer's reference frame", "Events simultaneous in one frame may not be simultaneous in another", "The transformations reduce to Galilean form at speeds much less than c", "All relativistic effects — time dilation and length contraction — follow from these equations"], workedExample: { problem: "An event occurs at x=1000m, t=0 in frame S. Frame S' moves at 0.6c. Find x' and t'.", steps: ["γ = 1/√(1-0.36) = 1.25", "x' = γ(x - vt) = 1.25(1000 - 0) = 1250m", "t' = γ(t - vx/c²) = 1.25(0 - 0.6c×1000/c²)", "t' = 1.25 × (-2×10⁻⁶) = -2.5×10⁻⁶ s"], answer: "x' = 1250m, t' = -2.5μs" }, equations: "x' = γ(x-vt)  |  t' = γ(t-vx/c²)  |  γ = 1/√(1-β²)", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "relativity" },
+      { id: "timedilation", title: "Time Dilation", introduction: "Einstein's special relativity shows that time passes at different rates for observers moving relative to each other. A clock on a fast-moving spaceship ticks more slowly than a clock at rest. This is not an illusion — the effect is real and measurable. GPS satellites must correct for time dilation to give accurate positions.", keyConcepts: ["Moving clocks tick more slowly than stationary clocks", "The effect becomes significant only at speeds close to the speed of light", "Time dilation has been confirmed by atomic clocks on aircraft and satellites", "The Lorentz factor γ = 1/√(1-v²/c²) quantifies the time dilation", "At v=0.87c, time passes twice as slowly for the moving observer"], workedExample: { problem: "A spaceship travels at 0.6c. How much time passes on the ship when Earth clocks show 10 years?", steps: ["Calculate Lorentz factor: γ = 1/√(1-v²/c²) = 1/√(1-0.36) = 1/√0.64 = 1/0.8 = 1.25", "Ship time = Earth time / γ", "Ship time = 10 / 1.25 = 8 years", "The ship's crew ages only 8 years while Earth ages 10 years"], answer: "8 years pass on the ship" }, equations: "t' = t/γ  |  γ = 1/√(1-v²/c²)  |  c = 3×10⁸ m/s", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "timedilation" },
+      { id: "lengthcontraction", title: "Length Contraction", introduction: "Moving objects appear shorter in the direction of motion. A spaceship travelling at 87% the speed of light would appear half its rest length to a stationary observer. Like time dilation, this is a real physical effect — not an optical illusion. The object itself is unaffected from its own reference frame.", keyConcepts: ["Moving objects are contracted in the direction of motion", "Length contraction only occurs in the direction of travel", "The contraction factor is the same Lorentz factor γ as time dilation", "In its own reference frame, the object's length is unchanged", "Length contraction and time dilation are two aspects of the same relativistic spacetime"], workedExample: { problem: "A spaceship of rest length 100m travels at 0.8c. Find its contracted length.", steps: ["Calculate Lorentz factor: γ = 1/√(1-0.8²) = 1/√(1-0.64) = 1/√0.36 = 1/0.6 = 1.667", "Contracted length: L = L₀/γ = 100/1.667", "Calculate: L = 60m"], answer: "Contracted length = 60 m" }, equations: "L = L₀/γ  |  γ = 1/√(1-v²/c²)  |  L₀ = rest length", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "lengthcontraction" },
+      { id: "emc2", title: "E = mc²", introduction: "Einstein's most famous equation reveals that mass and energy are equivalent — mass is simply a very concentrated form of energy. A tiny amount of mass corresponds to an enormous amount of energy because c² is such a large number. This equivalence powers nuclear reactors and explains why stars shine for billions of years.", keyConcepts: ["Mass and energy are equivalent and interchangeable", "c² = 9×10¹⁶ m²/s² — a tiny mass releases enormous energy", "Nuclear reactions release energy by converting a small fraction of mass", "The sun loses 4 million tonnes of mass every second as radiated energy", "Pair production creates matter from pure energy, confirming the equivalence"], workedExample: { problem: "Find the energy equivalent of 1 gram of matter.", steps: ["Use E = mc²", "Convert mass: m = 1g = 0.001 kg", "Speed of light: c = 3×10⁸ m/s", "Calculate: E = 0.001 × (3×10⁸)² = 0.001 × 9×10¹⁶ = 9×10¹³ J"], answer: "E = 9×10¹³ J (equivalent to ~21 kilotons of TNT)" }, equations: "E = mc²  |  E = γmc²  |  KE = (γ-1)mc²", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "emc2" },
+      { id: "spacetime", title: "Spacetime Diagrams", introduction: "Spacetime diagrams (Minkowski diagrams) are graphs that show the position of objects in space and time simultaneously. The vertical axis is time, the horizontal axis is space. Light always travels at 45° on these diagrams. They make it easy to visualise simultaneity, causality, and the twin paradox.", keyConcepts: ["Spacetime combines space and time into a single four-dimensional framework", "Events are points in spacetime — defined by both position and time", "Light cones define what events can causally influence each other", "The spacetime interval is invariant — the same for all observers", "Worldlines show the path of an object through spacetime"], workedExample: { problem: "On a spacetime diagram, explain why faster-than-light travel would allow time travel.", steps: ["On a spacetime diagram, light travels at 45° — the light cone boundary", "FTL travel would appear as a line less than 45° from horizontal", "Such a line exits the future light cone", "In another reference frame, this path goes backward in time", "FTL communication would therefore allow sending information to the past"], answer: "FTL travel crosses causality boundaries, enabling closed timelike curves" }, equations: "s² = c²t² - x²  |  ds² = c²dt² - dx²", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "spacetime" },
+      { id: "lorentz", title: "Lorentz Transformation", introduction: "The Lorentz transformations are the mathematical equations that convert measurements of space and time from one reference frame to another. They replace the simpler Galilean transformations of classical mechanics and correctly account for relativistic effects at high speeds.", keyConcepts: ["Lorentz transformations replace Galilean transformations at high speeds", "Space and time measurements depend on the observer's reference frame", "Events simultaneous in one frame may not be simultaneous in another", "The transformations reduce to Galilean form at speeds much less than c", "All relativistic effects — time dilation and length contraction — follow from these equations"], workedExample: { problem: "An event occurs at x=1000m, t=0 in frame S. Frame S' moves at 0.6c. Find x' and t'.", steps: ["γ = 1/√(1-0.36) = 1.25", "x' = γ(x - vt) = 1.25(1000 - 0) = 1250m", "t' = γ(t - vx/c²) = 1.25(0 - 0.6c×1000/c²)", "t' = 1.25 × (-2×10⁻⁶) = -2.5×10⁻⁶ s"], answer: "x' = 1250m, t' = -2.5μs" }, equations: "x' = γ(x-vt)  |  t' = γ(t-vx/c²)  |  γ = 1/√(1-β²)", controls: [{ id: "velocity", label: "Velocity", min: 1, max: 99, val: 80, unit: "% c" }], simKey: "lorentz" },
     ],
   },
   nuclear: {
     title: "Nuclear Physics", icon: "◎", color: "#639922",
     badge: "Nuclear Expert",
     lessons: [
-      { id: "decay", title: "Radioactive Decay", introduction: "Unstable atomic nuclei spontaneously emit radiation to become more stable. There are three main types — alpha particles (helium nuclei), beta particles (electrons or positrons), and gamma rays (high energy photons). Each type has different penetrating power and different effects on matter.", keyConcepts: ["Alpha decay emits a helium-4 nucleus — stopped by paper or skin", "Beta decay emits an electron or positron — stopped by thin aluminium", "Gamma decay emits high-energy photons — requires lead or thick concrete to stop", "Decay is random for individual atoms but predictable for large numbers", "Activity (decays per second) is measured in Becquerels (Bq)"], workedExample: { problem: "A sample has initial activity 8000 Bq and half-life 4 days. Find activity after 12 days.", steps: ["Number of half-lives: n = 12/4 = 3", "Activity after n half-lives: A = A₀ × (1/2)ⁿ", "Calculate: A = 8000 × (1/2)³ = 8000 × 1/8", "Result: A = 1000 Bq"], answer: "Activity after 12 days = 1000 Bq" }, equations: "N(t) = N₀e^(−λt)  |  T½ = ln2/λ  |  A = λN", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "nuclear" },
-      { id: "halflife", title: "Half-Life", introduction: "The half-life of a radioactive substance is the time taken for half the nuclei to decay. It ranges from fractions of a second to billions of years depending on the element. Half-life is used in carbon dating to determine the age of ancient materials, and in medicine to choose radioactive tracers.", keyConcepts: ["Half-life is the time for half the radioactive nuclei to decay", "After each half-life the activity and number of nuclei halves", "Half-life is constant — it does not change with temperature, pressure, or chemical state", "Carbon-14 has a half-life of 5730 years — used for dating ancient materials", "Short half-life isotopes are used in medical imaging to minimise patient radiation exposure"], workedExample: { problem: "Carbon-14 has a half-life of 5730 years. A sample has 25% of its original C-14. How old is it?", steps: ["25% remaining means the sample has gone through 2 half-lives", "(100% → 50% → 25% = 2 half-lives)", "Age = 2 × 5730 = 11,460 years"], answer: "The sample is approximately 11,460 years old" }, equations: "T½ = ln2/λ  |  N = N₀(½)^(t/T½)  |  λ = 0.693/T½", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "nuclear" },
-      { id: "fission", title: "Nuclear Fission", introduction: "Nuclear fission is the splitting of a heavy nucleus into two smaller nuclei, releasing enormous energy. When uranium-235 absorbs a neutron it splits into two medium-sized nuclei and releases 2-3 more neutrons — which can trigger further fissions. This chain reaction is the basis of nuclear power plants and atomic bombs.", keyConcepts: ["Fission splits heavy nuclei into lighter ones, releasing energy and neutrons", "The released neutrons can cause further fissions — creating a chain reaction", "Critical mass is the minimum amount of fissile material needed for a sustained chain reaction", "Nuclear power plants control the chain reaction using control rods", "Fission releases about a million times more energy per atom than chemical reactions"], workedExample: { problem: "A uranium-235 fission releases 200 MeV. Find the energy from 1kg of U-235.", steps: ["Moles of U-235 in 1kg: n = 1000/235 = 4.26 mol", "Number of atoms: N = 4.26 × 6.022×10²³ = 2.57×10²⁴ atoms", "Energy per fission: 200 MeV = 200 × 1.6×10⁻¹³ J = 3.2×10⁻¹¹ J", "Total energy: E = 2.57×10²⁴ × 3.2×10⁻¹¹ = 8.2×10¹³ J"], answer: "E ≈ 8.2×10¹³ J (equivalent to ~20 kilotons of TNT)" }, equations: "ΔE = Δmc²  |  ²³⁵U + n → fission products + 2-3n + energy", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "nuclear" },
-      { id: "fusion", title: "Nuclear Fusion", introduction: "Nuclear fusion joins light nuclei together to form heavier ones, releasing even more energy per kilogram than fission. It powers the sun and all stars. Scientists are working to achieve controlled fusion on Earth — it would provide virtually unlimited clean energy using hydrogen from seawater as fuel.", keyConcepts: ["Fusion joins light nuclei together, releasing enormous energy", "Requires extreme temperatures (100 million degrees) to overcome electrostatic repulsion", "Powers all stars — the sun fuses 600 million tonnes of hydrogen per second", "Produces no long-lived radioactive waste — much cleaner than fission", "ITER in France is the world's largest experimental fusion reactor, aiming to achieve net energy gain"], workedExample: { problem: "In the sun's fusion reaction, 4 protons fuse to form helium-4. The mass difference is 4.8×10⁻²⁹ kg. Find the energy released.", steps: ["Use E = mc²", "Mass difference: Δm = 4.8×10⁻²⁹ kg", "Speed of light: c = 3×10⁸ m/s", "Energy: E = 4.8×10⁻²⁹ × (3×10⁸)² = 4.3×10⁻¹² J = 26.7 MeV"], answer: "Energy released = 26.7 MeV per fusion reaction" }, equations: "⁴×¹H → ⁴He + 2e⁺ + 2ν + energy  |  ΔE = Δmc²", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "nuclear" },
-      { id: "binding", title: "Binding Energy", introduction: "The binding energy of a nucleus is the energy required to completely separate it into individual protons and neutrons. The higher the binding energy per nucleon, the more stable the nucleus. Iron-56 has the highest binding energy per nucleon — which is why both fission (of heavy elements) and fusion (of light elements) release energy, as both move toward iron on the binding energy curve.", keyConcepts: ["Binding energy holds the nucleus together against electrostatic repulsion", "Binding energy per nucleon peaks at iron-56 — the most stable nucleus", "Elements lighter than iron release energy through fusion", "Elements heavier than iron release energy through fission", "Mass defect: the nucleus is lighter than its constituent parts — the difference is the binding energy"], workedExample: { problem: "A helium-4 nucleus has mass 4.0015u. Find its binding energy. (proton=1.00728u, neutron=1.00867u, 1u=931.5 MeV)", steps: ["Mass of parts: 2×proton + 2×neutron = 2×1.00728 + 2×1.00867 = 4.0319u", "Mass defect: Δm = 4.0319 - 4.0015 = 0.0304u", "Binding energy: E = 0.0304 × 931.5 = 28.3 MeV", "Per nucleon: 28.3/4 = 7.07 MeV/nucleon"], answer: "Binding energy = 28.3 MeV (7.07 MeV per nucleon)" }, equations: "BE = Δmc²  |  Δm = Zm_p + Nm_n - M  |  1u = 931.5 MeV", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "nuclear" },
+      { id: "decay", title: "Radioactive Decay", introduction: "Unstable atomic nuclei spontaneously emit radiation to become more stable. There are three main types — alpha particles (helium nuclei), beta particles (electrons or positrons), and gamma rays (high energy photons). Each type has different penetrating power and different effects on matter.", keyConcepts: ["Alpha decay emits a helium-4 nucleus — stopped by paper or skin", "Beta decay emits an electron or positron — stopped by thin aluminium", "Gamma decay emits high-energy photons — requires lead or thick concrete to stop", "Decay is random for individual atoms but predictable for large numbers", "Activity (decays per second) is measured in Becquerels (Bq)"], workedExample: { problem: "A sample has initial activity 8000 Bq and half-life 4 days. Find activity after 12 days.", steps: ["Number of half-lives: n = 12/4 = 3", "Activity after n half-lives: A = A₀ × (1/2)ⁿ", "Calculate: A = 8000 × (1/2)³ = 8000 × 1/8", "Result: A = 1000 Bq"], answer: "Activity after 12 days = 1000 Bq" }, equations: "N(t) = N₀e^(−λt)  |  T½ = ln2/λ  |  A = λN", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "decay" },
+      { id: "halflife", title: "Half-Life", introduction: "The half-life of a radioactive substance is the time taken for half the nuclei to decay. It ranges from fractions of a second to billions of years depending on the element. Half-life is used in carbon dating to determine the age of ancient materials, and in medicine to choose radioactive tracers.", keyConcepts: ["Half-life is the time for half the radioactive nuclei to decay", "After each half-life the activity and number of nuclei halves", "Half-life is constant — it does not change with temperature, pressure, or chemical state", "Carbon-14 has a half-life of 5730 years — used for dating ancient materials", "Short half-life isotopes are used in medical imaging to minimise patient radiation exposure"], workedExample: { problem: "Carbon-14 has a half-life of 5730 years. A sample has 25% of its original C-14. How old is it?", steps: ["25% remaining means the sample has gone through 2 half-lives", "(100% → 50% → 25% = 2 half-lives)", "Age = 2 × 5730 = 11,460 years"], answer: "The sample is approximately 11,460 years old" }, equations: "T½ = ln2/λ  |  N = N₀(½)^(t/T½)  |  λ = 0.693/T½", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "halflife" },
+      { id: "fission", title: "Nuclear Fission", introduction: "Nuclear fission is the splitting of a heavy nucleus into two smaller nuclei, releasing enormous energy. When uranium-235 absorbs a neutron it splits into two medium-sized nuclei and releases 2-3 more neutrons — which can trigger further fissions. This chain reaction is the basis of nuclear power plants and atomic bombs.", keyConcepts: ["Fission splits heavy nuclei into lighter ones, releasing energy and neutrons", "The released neutrons can cause further fissions — creating a chain reaction", "Critical mass is the minimum amount of fissile material needed for a sustained chain reaction", "Nuclear power plants control the chain reaction using control rods", "Fission releases about a million times more energy per atom than chemical reactions"], workedExample: { problem: "A uranium-235 fission releases 200 MeV. Find the energy from 1kg of U-235.", steps: ["Moles of U-235 in 1kg: n = 1000/235 = 4.26 mol", "Number of atoms: N = 4.26 × 6.022×10²³ = 2.57×10²⁴ atoms", "Energy per fission: 200 MeV = 200 × 1.6×10⁻¹³ J = 3.2×10⁻¹¹ J", "Total energy: E = 2.57×10²⁴ × 3.2×10⁻¹¹ = 8.2×10¹³ J"], answer: "E ≈ 8.2×10¹³ J (equivalent to ~20 kilotons of TNT)" }, equations: "ΔE = Δmc²  |  ²³⁵U + n → fission products + 2-3n + energy", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "fission" },
+      { id: "fusion", title: "Nuclear Fusion", introduction: "Nuclear fusion joins light nuclei together to form heavier ones, releasing even more energy per kilogram than fission. It powers the sun and all stars. Scientists are working to achieve controlled fusion on Earth — it would provide virtually unlimited clean energy using hydrogen from seawater as fuel.", keyConcepts: ["Fusion joins light nuclei together, releasing enormous energy", "Requires extreme temperatures (100 million degrees) to overcome electrostatic repulsion", "Powers all stars — the sun fuses 600 million tonnes of hydrogen per second", "Produces no long-lived radioactive waste — much cleaner than fission", "ITER in France is the world's largest experimental fusion reactor, aiming to achieve net energy gain"], workedExample: { problem: "In the sun's fusion reaction, 4 protons fuse to form helium-4. The mass difference is 4.8×10⁻²⁹ kg. Find the energy released.", steps: ["Use E = mc²", "Mass difference: Δm = 4.8×10⁻²⁹ kg", "Speed of light: c = 3×10⁸ m/s", "Energy: E = 4.8×10⁻²⁹ × (3×10⁸)² = 4.3×10⁻¹² J = 26.7 MeV"], answer: "Energy released = 26.7 MeV per fusion reaction" }, equations: "⁴×¹H → ⁴He + 2e⁺ + 2ν + energy  |  ΔE = Δmc²", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "fusion" },
+      { id: "binding", title: "Binding Energy", introduction: "The binding energy of a nucleus is the energy required to completely separate it into individual protons and neutrons. The higher the binding energy per nucleon, the more stable the nucleus. Iron-56 has the highest binding energy per nucleon — which is why both fission (of heavy elements) and fusion (of light elements) release energy, as both move toward iron on the binding energy curve.", keyConcepts: ["Binding energy holds the nucleus together against electrostatic repulsion", "Binding energy per nucleon peaks at iron-56 — the most stable nucleus", "Elements lighter than iron release energy through fusion", "Elements heavier than iron release energy through fission", "Mass defect: the nucleus is lighter than its constituent parts — the difference is the binding energy"], workedExample: { problem: "A helium-4 nucleus has mass 4.0015u. Find its binding energy. (proton=1.00728u, neutron=1.00867u, 1u=931.5 MeV)", steps: ["Mass of parts: 2×proton + 2×neutron = 2×1.00728 + 2×1.00867 = 4.0319u", "Mass defect: Δm = 4.0319 - 4.0015 = 0.0304u", "Binding energy: E = 0.0304 × 931.5 = 28.3 MeV", "Per nucleon: 28.3/4 = 7.07 MeV/nucleon"], answer: "Binding energy = 28.3 MeV (7.07 MeV per nucleon)" }, equations: "BE = Δmc²  |  Δm = Zm_p + Nm_n - M  |  1u = 931.5 MeV", controls: [{ id: "halflife", label: "Half-Life", min: 1, max: 10, val: 4, unit: " s" }], simKey: "binding" },
     ],
   },
 
@@ -1080,7 +1080,17 @@ function SimCanvas({ simKey, controls }) {
       else if (simKey === "tunnelling") drawTunnelling(ctx, W, H, t, controls);
       else if (simKey === "orbitals") drawOrbitals(ctx, W, H, t, controls);
       else if (simKey === "relativity") drawRelativity(ctx, W, H, t, controls);
+      else if (simKey === "timedilation") drawTimedilation(ctx, W, H, t, controls);
+      else if (simKey === "lengthcontraction") drawLengthcontraction(ctx, W, H, t, controls);
+      else if (simKey === "emc2") drawEmc2(ctx, W, H, t, controls);
+      else if (simKey === "spacetime") drawSpacetime(ctx, W, H, t, controls);
+      else if (simKey === "lorentz") drawLorentz(ctx, W, H, t, controls);
       else if (simKey === "nuclear") drawNuclear(ctx, W, H, t, controls);
+      else if (simKey === "decay") drawDecay(ctx, W, H, t, controls);
+      else if (simKey === "halflife") drawHalflife(ctx, W, H, t, controls);
+      else if (simKey === "fission") drawFission(ctx, W, H, t, controls);
+      else if (simKey === "fusion") drawFusion(ctx, W, H, t, controls);
+      else if (simKey === "binding") drawBinding(ctx, W, H, t, controls);
       else if (simKey === "doppler") drawDoppler(ctx, W, H, t, controls);
       else if (simKey === "refraction") drawRefraction(ctx, W, H, t, controls);
       else if (simKey === "diffraction") drawDiffraction(ctx, W, H, t, controls);
@@ -2147,6 +2157,508 @@ function drawRelativity(ctx, W, H, t, controls) {
   });
   ctx.font = "11px monospace"; ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.textAlign = "center";
   ctx.fillText(`v = ${controls.velocity||80}% c  |  γ = ${gamma.toFixed(3)}`, W / 2, H - 8);
+  ctx.textAlign = "left";
+}
+
+
+function drawTimedilation(ctx, W, H, t, controls) {
+  const beta = (controls.velocity || 80) / 100;
+  const gamma = 1 / Math.sqrt(1 - beta * beta);
+  const cx1 = W * 0.28, cx2 = W * 0.72, cy = H / 2;
+
+  [{ cx: cx1, speed: 1, col: "#1D9E75", label: "Stationary", sub: "t = t" },
+   { cx: cx2, speed: 1/gamma, col: "#378ADD", label: "Moving v=" + (beta*100).toFixed(0) + "%c", sub: "t' = t/gamma" }
+  ].forEach(function(clock) {
+    const angle = (t * clock.speed) % (Math.PI * 2);
+    ctx.beginPath(); ctx.arc(clock.cx, cy, 55, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(20,20,30,0.9)"; ctx.fill();
+    ctx.strokeStyle = clock.col; ctx.lineWidth = 2.5; ctx.stroke();
+
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(clock.cx + Math.cos(a) * 46, cy + Math.sin(a) * 46);
+      ctx.lineTo(clock.cx + Math.cos(a) * 52, cy + Math.sin(a) * 52);
+      ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1; ctx.stroke();
+    }
+
+    ctx.strokeStyle = clock.col; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(clock.cx, cy);
+    ctx.lineTo(clock.cx + Math.sin(angle) * 40, cy - Math.cos(angle) * 40); ctx.stroke();
+
+    ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(clock.cx, cy);
+    ctx.lineTo(clock.cx + Math.sin(angle * 12) * 22, cy - Math.cos(angle * 12) * 22); ctx.stroke();
+
+    ctx.fillStyle = clock.col; ctx.font = "12px monospace"; ctx.textAlign = "center";
+    ctx.fillText(clock.label, clock.cx, cy + 70);
+    ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "10px monospace";
+    ctx.fillText(clock.sub, clock.cx, cy + 85);
+  });
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("v=" + (beta*100).toFixed(0) + "%c  gamma=" + gamma.toFixed(3) + "  Moving clock ticks " + gamma.toFixed(2) + "x slower", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawLengthcontraction(ctx, W, H, t, controls) {
+  const beta = (controls.velocity || 80) / 100;
+  const gamma = 1 / Math.sqrt(1 - beta * beta);
+  const cy = H / 2;
+
+  // Rest frame spaceship
+  const restL = 200;
+  const contractedL = restL / gamma;
+
+  ctx.fillStyle = "rgba(255,255,255,0.1)";
+  ctx.fillRect(W/2 - restL/2, cy - 60, restL, 30);
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2;
+  ctx.strokeRect(W/2 - restL/2, cy - 60, restL, 30);
+  ctx.fillStyle = "#1D9E75"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Rest length L0 = " + restL + "m", W/2, cy - 35);
+  ctx.fillText("Stationary frame", W/2, cy - 68);
+
+  // Contracted spaceship
+  ctx.fillStyle = "rgba(55,138,221,0.15)";
+  ctx.fillRect(W/2 - contractedL/2, cy + 20, contractedL, 30);
+  ctx.strokeStyle = "#378ADD"; ctx.lineWidth = 2;
+  ctx.strokeRect(W/2 - contractedL/2, cy + 20, contractedL, 30);
+  ctx.fillStyle = "#378ADD"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Contracted L = " + contractedL.toFixed(1) + "m", W/2, cy + 43);
+  ctx.fillText("Moving frame v=" + (beta*100).toFixed(0) + "%c", W/2, cy + 14);
+
+  // Measurement arrows
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W/2 - restL/2, cy - 15); ctx.lineTo(W/2 + restL/2, cy - 15); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2 - restL/2, cy - 20); ctx.lineTo(W/2 - restL/2, cy - 10); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2 + restL/2, cy - 20); ctx.lineTo(W/2 + restL/2, cy - 10); ctx.stroke();
+
+  ctx.strokeStyle = "#378ADD"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W/2 - contractedL/2, cy + 58); ctx.lineTo(W/2 + contractedL/2, cy + 58); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2 - contractedL/2, cy + 53); ctx.lineTo(W/2 - contractedL/2, cy + 63); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2 + contractedL/2, cy + 53); ctx.lineTo(W/2 + contractedL/2, cy + 63); ctx.stroke();
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("L = L0/gamma = " + restL + "/" + gamma.toFixed(2) + " = " + contractedL.toFixed(1) + "m  (" + (100/gamma).toFixed(0) + "% of rest length)", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawEmc2(ctx, W, H, t, controls) {
+  const beta = (controls.velocity || 80) / 100;
+  const gamma = 1 / Math.sqrt(1 - beta * beta);
+  const cx = W / 2, cy = H / 2;
+
+  // Energy diagram
+  const restE = 100;
+  const totalE = restE * gamma;
+  const kineticE = totalE - restE;
+
+  const barX = cx - 100, barW = 200;
+
+  // Rest energy bar
+  const restH = (restE / totalE) * (H - 120);
+  ctx.fillStyle = "#378ADD";
+  ctx.fillRect(barX, cy + 40 - restH, barW * 0.45, restH);
+  ctx.fillStyle = "rgba(255,255,255,0.8)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Rest", barX + barW * 0.22, cy + 55);
+  ctx.fillText("E=mc2", barX + barW * 0.22, cy + 68);
+
+  // Total energy bar
+  const totalH = H - 120;
+  ctx.fillStyle = "#E85D24";
+  ctx.fillRect(barX + barW * 0.55, cy + 40 - totalH, barW * 0.45, kineticE / totalE * totalH);
+  ctx.fillStyle = "#378ADD";
+  ctx.fillRect(barX + barW * 0.55, cy + 40 - restH, barW * 0.45, restH);
+  ctx.fillStyle = "rgba(255,255,255,0.8)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Total", barX + barW * 0.77, cy + 55);
+  ctx.fillText("E=ymc2", barX + barW * 0.77, cy + 68);
+
+  // KE label
+  ctx.fillStyle = "#E85D24"; ctx.font = "10px monospace";
+  ctx.fillText("KE", barX + barW * 0.77, cy + 40 - totalH/2 - 10);
+
+  // E=mc2 visual
+  ctx.fillStyle = "#F2C94C"; ctx.font = "bold 28px monospace"; ctx.textAlign = "center";
+  ctx.fillText("E = mc2", cx, 50);
+
+  // Values
+  ctx.fillStyle = "rgba(255,255,255,0.5)"; ctx.font = "12px monospace";
+  ctx.fillText("gamma = " + gamma.toFixed(3), cx, 80);
+  ctx.fillText("Total E = " + gamma.toFixed(2) + " x mc2", cx, 100);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText("v=" + (beta*100).toFixed(0) + "%c  KE = (gamma-1)mc2 = " + (kineticE/restE).toFixed(2) + "mc2", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawSpacetime(ctx, W, H, t, controls) {
+  const beta = (controls.velocity || 80) / 100;
+  const cx = W * 0.35, cy = H * 0.7;
+  const scale = Math.min(W, H) * 0.3;
+
+  // Axes
+  ctx.strokeStyle = "rgba(255,255,255,0.4)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(cx, 20); ctx.lineTo(cx, H - 20); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(20, cy); ctx.lineTo(W * 0.65, cy); ctx.stroke();
+  ctx.fillStyle = "rgba(255,255,255,0.5)"; ctx.font = "12px monospace"; ctx.textAlign = "center";
+  ctx.fillText("t (time)", cx + 15, 30);
+  ctx.textAlign = "left"; ctx.fillText("x (space)", W * 0.6, cy - 8);
+
+  // Light cone (45 degrees)
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 2; ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + scale, cy - scale); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx - scale, cy - scale); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#F2C94C"; ctx.font = "10px monospace"; ctx.textAlign = "left";
+  ctx.fillText("light cone", cx + 5, cy - scale + 10);
+
+  // Worldlines
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx, cy - scale); ctx.stroke();
+  ctx.fillStyle = "#1D9E75"; ctx.fillText("stationary", cx + 5, cy - scale/2);
+
+  const angle = Math.atan(beta);
+  ctx.strokeStyle = "#378ADD"; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + scale * Math.sin(angle), cy - scale * Math.cos(angle)); ctx.stroke();
+  ctx.fillStyle = "#378ADD"; ctx.fillText("moving", cx + scale * Math.sin(angle) + 5, cy - scale * Math.cos(angle) + 10);
+
+  // Future/past regions
+  ctx.fillStyle = "rgba(29,158,117,0.05)";
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + scale, cy - scale); ctx.lineTo(cx, cy - scale); ctx.lineTo(cx - scale, cy - scale); ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.2)"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Future", cx, cy - scale * 0.8);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText("Spacetime diagram  |  Worldlines show paths through spacetime  |  Light cone defines causality", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawLorentz(ctx, W, H, t, controls) {
+  const beta = (controls.velocity || 80) / 100;
+  const gamma = 1 / Math.sqrt(1 - beta * beta);
+  const cx = W / 2, cy = H / 2;
+
+  // Grid showing Lorentz transformation
+  const gridSize = 50;
+  const cols = 5, rows = 5;
+
+  // Original grid (S frame)
+  ctx.strokeStyle = "rgba(29,158,117,0.3)"; ctx.lineWidth = 1;
+  for (let i = -cols; i <= cols; i++) {
+    ctx.beginPath();
+    ctx.moveTo(cx + i * gridSize, cy - rows * gridSize);
+    ctx.lineTo(cx + i * gridSize, cy + rows * gridSize);
+    ctx.stroke();
+  }
+  for (let j = -rows; j <= rows; j++) {
+    ctx.beginPath();
+    ctx.moveTo(cx - cols * gridSize, cy + j * gridSize);
+    ctx.lineTo(cx + cols * gridSize, cy + j * gridSize);
+    ctx.stroke();
+  }
+
+  // Transformed grid (S' frame) - sheared
+  ctx.strokeStyle = "rgba(55,138,221,0.4)"; ctx.lineWidth = 1;
+  const shear = beta;
+  for (let i = -cols; i <= cols; i++) {
+    ctx.beginPath();
+    ctx.moveTo(cx + i * gridSize / gamma, cy - rows * gridSize);
+    ctx.lineTo(cx + i * gridSize / gamma + shear * rows * gridSize, cy + rows * gridSize);
+    ctx.stroke();
+  }
+  for (let j = -rows; j <= rows; j++) {
+    ctx.beginPath();
+    ctx.moveTo(cx - cols * gridSize, cy + j * gridSize / gamma);
+    ctx.lineTo(cx + cols * gridSize, cy + j * gridSize / gamma + shear * cols * gridSize * 0);
+    ctx.stroke();
+  }
+
+  // Labels
+  ctx.fillStyle = "#1D9E75"; ctx.font = "11px monospace"; ctx.textAlign = "left";
+  ctx.fillText("S frame (green)", 20, 30);
+  ctx.fillStyle = "#378ADD";
+  ctx.fillText("S' frame (blue) v=" + (beta*100).toFixed(0) + "%c", 20, 48);
+
+  // Moving event point
+  const eventX = cx + Math.sin(t * 0.5) * 100;
+  const eventY = cy - 50;
+  ctx.beginPath(); ctx.arc(eventX, eventY, 7, 0, Math.PI * 2);
+  ctx.fillStyle = "#F2C94C"; ctx.fill();
+  ctx.fillStyle = "#F2C94C"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("event", eventX, eventY - 12);
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace";
+  ctx.fillText("Lorentz: x'=gamma(x-vt)  t'=gamma(t-vx/c2)  gamma=" + gamma.toFixed(2), W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+
+function drawDecay(ctx, W, H, t, controls) {
+  const T12 = controls.halflife || 4, lambda = Math.log(2) / T12, N0 = 64;
+  const cw = W * 0.5, ch = H - 70, ox = 40, oy = H - 40;
+
+  ctx.strokeStyle = "rgba(255,255,255,0.08)"; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    const y = oy - (i / 4) * ch;
+    ctx.beginPath(); ctx.moveTo(ox, y); ctx.lineTo(ox + cw, y); ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.3)"; ctx.font = "10px monospace"; ctx.textAlign = "right";
+    ctx.fillText(Math.round(N0 * (i / 4)), ox - 4, y + 4);
+  }
+
+  ctx.beginPath(); ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2;
+  const maxT = T12 * 3.5;
+  for (let i = 0; i <= 100; i++) {
+    const x = ox + (i / 100) * cw, y = oy - Math.exp(-lambda * (i / 100) * maxT) * ch;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  const cT = t % (maxT + 1), cx2 = ox + (cT / maxT) * cw, cy2 = oy - Math.exp(-lambda * cT) * ch;
+  ctx.beginPath(); ctx.arc(cx2, cy2, 6, 0, Math.PI * 2); ctx.fillStyle = "#E85D24"; ctx.fill();
+
+  const Ncur = Math.round(N0 * Math.exp(-lambda * cT));
+  const gx = W * 0.58, gy = 20;
+  ctx.font = "10px monospace"; ctx.textAlign = "left"; ctx.fillStyle = "rgba(255,255,255,0.4)";
+  ctx.fillText("Remaining: " + Ncur + " / " + N0, gx, gy);
+
+  for (let i = 0; i < N0; i++) {
+    const col = i % 8, row = Math.floor(i / 8);
+    const nx = gx + col * 18 + 9, ny = gy + row * 18 + 12;
+    ctx.beginPath(); ctx.arc(nx, ny, 6, 0, Math.PI * 2);
+    if (i < Ncur) { ctx.fillStyle = "#7F77DD"; ctx.fill(); }
+    else { ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 0.5; ctx.stroke(); }
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(ox, oy - ch - 10); ctx.lineTo(ox, oy); ctx.lineTo(ox + cw + 10, oy); ctx.stroke();
+  ctx.fillStyle = "rgba(255,255,255,0.35)"; ctx.textAlign = "center";
+  ctx.fillText("T1/2=" + T12 + "s  lambda=" + lambda.toFixed(3) + "/s  N=" + Ncur, ox + cw/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawHalflife(ctx, W, H, t, controls) {
+  const T12 = controls.halflife || 4, lambda = Math.log(2) / T12;
+  const ox = 60, oy = H - 50, gw = W - 120, gh = H - 90;
+
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    ctx.beginPath(); ctx.moveTo(ox + i * gw/4, oy - gh); ctx.lineTo(ox + i * gw/4, oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox, oy - i * gh/4); ctx.lineTo(ox + gw, oy - i * gh/4); ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.3)"; ctx.font = "9px monospace"; ctx.textAlign = "center";
+    ctx.fillText(i * T12 + "s", ox + i * gw/4, oy + 12);
+    ctx.textAlign = "right";
+    ctx.fillText((100 - i * 25) + "%", ox - 4, oy - i * gh/4 + 4);
+  }
+
+  ctx.beginPath(); ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2.5;
+  for (let i = 0; i <= 100; i++) {
+    const x = ox + (i / 100) * gw;
+    const timeVal = (i / 100) * T12 * 4;
+    const y = oy - Math.exp(-lambda * timeVal) * gh;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Half-life markers
+  for (let h = 1; h <= 4; h++) {
+    const x = ox + (h / 4) * gw;
+    const y = oy - Math.pow(0.5, h) * gh;
+    ctx.strokeStyle = "rgba(242,201,76,0.4)"; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(ox, y); ctx.lineTo(x, y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x, oy); ctx.lineTo(x, y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = "#F2C94C"; ctx.fill();
+    ctx.fillStyle = "#F2C94C"; ctx.font = "9px monospace"; ctx.textAlign = "center";
+    ctx.fillText("T1/2 x" + h, x, y - 8);
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(ox, oy - gh); ctx.lineTo(ox, oy); ctx.lineTo(ox + gw, oy); ctx.stroke();
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("T1/2=" + T12 + "s  Each half-life halves the remaining nuclei", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawFission(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  const phase = (t * 0.4) % 1;
+
+  if (phase < 0.3) {
+    // Neutron approaching
+    const nx = 60 + phase * (cx - 80) / 0.3;
+    ctx.beginPath(); ctx.arc(cx, cy, 35, 0, Math.PI * 2);
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 35);
+    grad.addColorStop(0, "rgba(232,93,36,0.6)"); grad.addColorStop(1, "rgba(232,93,36,0.1)");
+    ctx.fillStyle = grad; ctx.fill();
+    ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#fff"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+    ctx.fillText("U-235", cx, cy + 4);
+
+    ctx.beginPath(); ctx.arc(nx, cy, 6, 0, Math.PI * 2);
+    ctx.fillStyle = "#F2C94C"; ctx.fill();
+    ctx.fillStyle = "#F2C94C"; ctx.font = "10px monospace";
+    ctx.fillText("n", nx, cy - 10);
+
+  } else if (phase < 0.5) {
+    // Excited nucleus
+    const wobble = Math.sin(t * 20) * 10;
+    ctx.beginPath(); ctx.ellipse(cx, cy, 40 + wobble, 35 - wobble/2, 0, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(232,93,36,0.5)"; ctx.fill();
+    ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#fff"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+    ctx.fillText("U-236*", cx, cy + 4);
+
+  } else {
+    // Fission products
+    const spread = (phase - 0.5) / 0.5 * 120;
+    [[-1, "Ba-141", "#378ADD"], [1, "Kr-92", "#1D9E75"]].forEach(function(p) {
+      ctx.beginPath(); ctx.arc(cx + p[0] * spread, cy, 22, 0, Math.PI * 2);
+      ctx.fillStyle = p[2] + "44"; ctx.fill();
+      ctx.strokeStyle = p[2]; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#fff"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+      ctx.fillText(p[1], cx + p[0] * spread, cy + 4);
+    });
+
+    for (let i = 0; i < 3; i++) {
+      const angle = (i / 3) * Math.PI * 2;
+      const nr = spread * 0.6;
+      ctx.beginPath(); ctx.arc(cx + Math.cos(angle) * nr, cy + Math.sin(angle) * nr, 5, 0, Math.PI * 2);
+      ctx.fillStyle = "#F2C94C"; ctx.fill();
+    }
+
+    ctx.fillStyle = "#F2C94C"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+    ctx.fillText("3 neutrons", cx, cy - 60);
+    ctx.fillStyle = "#E85D24"; ctx.font = "11px monospace";
+    ctx.fillText("Energy: ~200 MeV", cx, cy + 60);
+  }
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("U-235 + n -> Ba-141 + Kr-92 + 3n + 200 MeV", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawFusion(ctx, W, H, t, controls) {
+  const cx = W / 2, cy = H / 2;
+  const phase = (t * 0.35) % 1;
+
+  if (phase < 0.4) {
+    // Two nuclei approaching
+    const sep = 200 - phase * (200 / 0.4);
+    [[-1, "H-2", "#378ADD"], [1, "H-3", "#1D9E75"]].forEach(function(p) {
+      ctx.beginPath(); ctx.arc(cx + p[0] * sep/2, cy, 18, 0, Math.PI * 2);
+      ctx.fillStyle = p[2] + "44"; ctx.fill();
+      ctx.strokeStyle = p[2]; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#fff"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+      ctx.fillText(p[1], cx + p[0] * sep/2, cy + 4);
+
+      // Velocity arrows
+      ctx.strokeStyle = p[2]; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cx + p[0] * (sep/2 + 18), cy);
+      ctx.lineTo(cx + p[0] * (sep/2 - 10), cy); ctx.stroke();
+    });
+
+  } else if (phase < 0.55) {
+    // Fusion flash
+    const flash = (phase - 0.4) / 0.15;
+    const r = 20 + flash * 40;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    grad.addColorStop(0, "rgba(255,255,200,0.9)");
+    grad.addColorStop(0.5, "rgba(255,200,50,0.6)");
+    grad.addColorStop(1, "rgba(255,100,0,0)");
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fillStyle = grad; ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.font = "bold 14px monospace"; ctx.textAlign = "center";
+    ctx.fillText("FUSION!", cx, cy + 5);
+
+  } else {
+    // Products
+    const spread = (phase - 0.55) / 0.45 * 100;
+    ctx.beginPath(); ctx.arc(cx, cy - spread * 0.3, 22, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(232,93,36,0.4)"; ctx.fill();
+    ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#fff"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+    ctx.fillText("He-4", cx, cy - spread * 0.3 + 4);
+
+    ctx.beginPath(); ctx.arc(cx + spread, cy + spread * 0.5, 6, 0, Math.PI * 2);
+    ctx.fillStyle = "#F2C94C"; ctx.fill();
+    ctx.fillStyle = "#F2C94C"; ctx.font = "10px monospace";
+    ctx.fillText("n", cx + spread + 10, cy + spread * 0.5);
+
+    ctx.fillStyle = "#E85D24"; ctx.font = "11px monospace";
+    ctx.fillText("17.6 MeV", cx, cy + 60);
+  }
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "11px monospace"; ctx.textAlign = "center";
+  ctx.fillText("H-2 + H-3 -> He-4 + n + 17.6 MeV  |  Powers the sun", W/2, H - 8);
+  ctx.textAlign = "left";
+}
+
+function drawBinding(ctx, W, H, t, controls) {
+  const ox = 60, oy = H - 50, gw = W - 120, gh = H - 90;
+
+  const bindingData = [
+    [1,0],[2,1.1],[4,7.07],[6,5.3],[8,7.06],[12,7.68],[16,7.98],[20,8.03],
+    [28,8.45],[40,8.55],[56,8.79],[90,8.7],[120,8.5],[150,8.2],[180,7.9],[208,7.87],[235,7.59],[238,7.57]
+  ];
+
+  const maxA = 238, maxBE = 9;
+
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    ctx.beginPath(); ctx.moveTo(ox + i * gw/4, oy - gh); ctx.lineTo(ox + i * gw/4, oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox, oy - i * gh/4); ctx.lineTo(ox + gw, oy - i * gh/4); ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.3)"; ctx.font = "9px monospace"; ctx.textAlign = "center";
+    ctx.fillText(Math.round(i * maxA/4), ox + i * gw/4, oy + 12);
+    ctx.textAlign = "right";
+    ctx.fillText((i * maxBE/4).toFixed(1), ox - 4, oy - i * gh/4 + 4);
+  }
+
+  ctx.beginPath(); ctx.strokeStyle = "#7F77DD"; ctx.lineWidth = 2.5;
+  bindingData.forEach(function(d, i) {
+    const x = ox + (d[0] / maxA) * gw;
+    const y = oy - (d[1] / maxBE) * gh;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  bindingData.forEach(function(d) {
+    const x = ox + (d[0] / maxA) * gw;
+    const y = oy - (d[1] / maxBE) * gh;
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = "#7F77DD"; ctx.fill();
+  });
+
+  // Iron-56 peak marker
+  const feX = ox + (56 / maxA) * gw;
+  const feY = oy - (8.79 / maxBE) * gh;
+  ctx.beginPath(); ctx.arc(feX, feY, 8, 0, Math.PI * 2);
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = "#F2C94C"; ctx.font = "10px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Fe-56 (most stable)", feX, feY - 14);
+
+  // Fission/fusion arrows
+  ctx.strokeStyle = "#E85D24"; ctx.lineWidth = 1.5; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(ox + (235/maxA)*gw, oy - (7.59/maxBE)*gh);
+  ctx.lineTo(feX, feY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#E85D24"; ctx.font = "9px monospace"; ctx.textAlign = "center";
+  ctx.fillText("Fission ->", ox + (180/maxA)*gw, oy - (8/maxBE)*gh - 8);
+
+  ctx.strokeStyle = "#1D9E75"; ctx.lineWidth = 1.5; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(ox + (4/maxA)*gw, oy - (7.07/maxBE)*gh);
+  ctx.lineTo(feX, feY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#1D9E75"; ctx.font = "9px monospace"; ctx.textAlign = "center";
+  ctx.fillText("<- Fusion", ox + (25/maxA)*gw, oy - (8/maxBE)*gh - 8);
+
+  ctx.strokeStyle = "rgba(255,255,255,0.3)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(ox, oy - gh); ctx.lineTo(ox, oy); ctx.lineTo(ox + gw, oy); ctx.stroke();
+
+  ctx.fillStyle = "rgba(255,255,255,0.4)"; ctx.font = "10px monospace"; ctx.textAlign = "left";
+  ctx.fillText("A (mass number)", ox + gw/2, oy + 22);
+  ctx.textAlign = "center";
+  ctx.fillText("Binding energy per nucleon (MeV)  |  Fe-56 is most stable  |  Both fission and fusion release energy", W/2, H - 8);
   ctx.textAlign = "left";
 }
 
